@@ -14,7 +14,7 @@
 """
 The main entry point to run the PPO algorithm
 """
-
+import datetime
 from typing import Literal, Optional, Union, cast
 
 import numpy as np
@@ -77,7 +77,10 @@ class FSDPWorker(Worker):
         self._cache = {}
 
         if not dist.is_initialized():
-            dist.init_process_group(backend="nccl")
+            dist.init_process_group(
+                backend="nccl",
+                timeout=datetime.timedelta(seconds=12000)
+            )
 
         # improve numerical stability
         torch.backends.cuda.matmul.allow_tf32 = False

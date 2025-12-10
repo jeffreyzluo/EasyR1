@@ -93,6 +93,8 @@ class AlgorithmConfig:
     """filter out low reward samples if online filtering"""
     filter_high: float = 0.99
     """filter out high reward samples if online filtering"""
+    rollout_correction_bypass: bool = False
+    """bypass rollout correction if set to True"""
 
 
 @dataclass

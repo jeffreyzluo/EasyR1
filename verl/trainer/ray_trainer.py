@@ -445,13 +445,19 @@ class RayPPOTrainer:
             test_gen_batch.meta_info["min_pixels"] = self.config.data.min_pixels
             test_gen_batch.meta_info["max_pixels"] = self.config.data.max_pixels
             test_gen_batch.meta_info["video_fps"] = self.config.data.video_fps
+            test_gen_batch.meta_info["validate"] = True
 
             test_gen_batch, pad_size = pad_dataproto_to_divisor(test_gen_batch, self.actor_rollout_ref_wg.world_size)
             test_output_gen_batch = self.actor_rollout_ref_wg.generate_sequences(test_gen_batch)
             test_output_gen_batch = unpad_dataproto(test_output_gen_batch, pad_size=pad_size * repeat_times)
 
             # repeat to align with repeated responses in rollout
+            # print(f"🔍 DEBUG - Before repeat: test_batch.batch_size={test_batch.batch_size}, test_output_gen_batch.batch_size={test_output_gen_batch.batch_size}")
+            # print(f"🔍 DEBUG - repeat_times={repeat_times}")
+            
             test_batch = test_batch.repeat(repeat_times=repeat_times, interleave=True)
+            # print(f"🔍 DEBUG - After repeat: test_batch.batch_size={test_batch.batch_size}")
+            # print(f"🔍 DEBUG - About to union: test_batch.batch_size={test_batch.batch_size}, test_output_gen_batch.batch_size={test_output_gen_batch.batch_size}")
             test_batch = test_batch.union(test_output_gen_batch)
 
             # evaluate using reward_function
@@ -486,7 +492,8 @@ class RayPPOTrainer:
             test_gen_batch.meta_info["min_pixels"] = self.config.data.min_pixels
             test_gen_batch.meta_info["max_pixels"] = self.config.data.max_pixels
             test_gen_batch.meta_info["video_fps"] = self.config.data.video_fps
-
+            test_gen_batch.meta_info["validate"] = True
+            
             test_gen_batch, pad_size = pad_dataproto_to_divisor(test_gen_batch, self.actor_rollout_ref_wg.world_size)
             test_output_gen_batch = self.actor_rollout_ref_wg.generate_sequences(test_gen_batch)
             test_output_gen_batch = unpad_dataproto(test_output_gen_batch, pad_size=pad_size * repeat_times)
@@ -575,6 +582,8 @@ class RayPPOTrainer:
                 meta_info_keys=["min_pixels", "max_pixels", "video_fps"],
             )
 
+            gen_batch.meta_info["validate"] = False
+            
             # generate a batch
             gen_batch_output = self.actor_rollout_ref_wg.generate_sequences(gen_batch)
 
@@ -693,6 +702,24 @@ class RayPPOTrainer:
                     old_log_probs = self.actor_rollout_ref_wg.compute_log_probs(batch)
                     batch = batch.union(old_log_probs)
 
+                rollout_correction_bypass = getattr(self.config.algorithm, "rollout_correction_bypass", None)
+                if rollout_correction_bypass: # Set the old_log_probs to rollout_log_probs for bypassing rollout correction
+                    # Also calculate the difference for logging
+                    # TODO: Calculate and log the KL divergence instead of simple difference. First check the type of the values.
+                    # K3 estimator for vllm-kl: http://joschu.net/blog/kl-approx.html
+                    # Following the implementation of: https://yingru.notion.site/When-Speed-Kills-Stability-Demystifying-RL-Collapse-from-the-Training-Inference-Mismatch-271211a558b7808d8b12d403fd15edda
+                    rollout_log_probs = batch.batch["rollout_log_probs"] # pi_vllm
+                    actor_old_log_probs = batch.batch["old_log_probs"] # pi_fsdp
+                    response_mask = batch.batch["response_mask"]
+                    log_ratio = actor_old_log_probs - rollout_log_probs 
+                    vllm_k3_kl_matrix = torch.exp(log_ratio) - log_ratio - 1
+                    vllm_k3_kl = VF.masked_mean(vllm_k3_kl_matrix, response_mask)
+                    vllm_k3_kl_metric = {"actor/vllm_k3_kl": vllm_k3_kl.detach().item()}
+                    metrics.update(vllm_k3_kl_metric)
+                    
+                    # Bypass
+                    batch.batch["old_log_probs"] = batch.batch["rollout_log_probs"]
+                
                 # compute ref_log_probs
                 if self.use_reference_policy:
                     with timer("ref", timing_raw):
@@ -769,7 +796,7 @@ class RayPPOTrainer:
                         outputs=outputs,
                         gts=sample_gts,
                         scores=scores,
-                        dump_path="generation_log_3_hard",
+                        dump_path=os.path.join("rollout_outputs", self.config.trainer.experiment_name),
                         sort_uid = uid_list
                     )
                 # validate

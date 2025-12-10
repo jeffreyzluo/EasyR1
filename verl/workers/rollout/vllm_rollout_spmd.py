@@ -13,7 +13,9 @@
 # limitations under the License.
 
 import os
+import random
 from contextlib import contextmanager
+from copy import deepcopy
 from typing import Any, Optional, Union
 
 import numpy as np
@@ -22,6 +24,7 @@ import torch.distributed
 from tensordict import TensorDict
 from transformers import PreTrainedTokenizer, ProcessorMixin
 from vllm import LLM, RequestOutput, SamplingParams
+from omegaconf import OmegaConf
 
 from ...protocol import DataProto
 from ...utils import torch_functional as VF
@@ -98,6 +101,12 @@ class vLLMRollout(BaseRollout):
             raise ValueError("max_num_batched_tokens should be greater than prompt_length + response_length.")
 
         engine_kwargs = {}
+        if hasattr(config, "engine_kwargs") and hasattr(config.engine_kwargs, "vllm"):
+            from dataclasses import asdict
+            vllm_kwargs = asdict(config.engine_kwargs.vllm)
+            # Remove None values to use vllm defaults
+            engine_kwargs = {k: v for k, v in vllm_kwargs.items() if v is not None}
+        
         if processor is not None:  # only VLMs have processor
             engine_kwargs["disable_mm_preprocessor_cache"] = True
             if config.limit_images:
@@ -139,6 +148,19 @@ class vLLMRollout(BaseRollout):
         print(f"Sampling params: {sampling_kwargs}.")
         self.sampling_params = SamplingParams(**sampling_kwargs)
 
+        # Initialize custom rollout configurations
+        if hasattr(config, 'custom_rollout_flag') and config.custom_rollout_flag is not None:
+            print(f"🚩 =>>custom_rollout_flag: {config.custom_rollout_flag}")
+            if config.custom_rollout_flag == "ctrlg":
+                # Ctrl-G doesn't require loading reasoning modules
+                if not hasattr(config, 'custom_rollout_args'):
+                    raise ValueError("custom_rollout_args is missing in config. Please add custom_rollout_args with ctrlg_reasoning_type_list parameter.")
+                if not hasattr(config.custom_rollout_args, 'ctrlg_reasoning_type_list'):
+                    raise ValueError("ctrlg_reasoning_type_list is missing in custom_rollout_args. Please specify ctrlg_reasoning_type_list parameter.")
+                if not config.custom_rollout_args.ctrlg_reasoning_type_list:
+                    raise ValueError("ctrlg_reasoning_type_list is empty. Please provide at least one reasoning type.")
+                print(f"📝 =>>ctrlg_reasoning_type_list: {config.custom_rollout_args.ctrlg_reasoning_type_list}")
+
     @contextmanager
     def update_sampling_params(self, **kwargs):
         # update sampling params
@@ -167,6 +189,11 @@ class vLLMRollout(BaseRollout):
         non_tensor_batch = prompts.non_tensor_batch
         batch_raw_prompt_ids = non_tensor_batch.pop("raw_prompt_ids")
         batch_multi_modal_data = non_tensor_batch.pop("multi_modal_data", None)
+        
+        # Meta data
+        is_validate = prompts.meta_info.get("validate", False)
+        calculate_log_probs = getattr(self.config, "calculate_log_probs", False) and not is_validate
+        
         if batch_size != len(batch_raw_prompt_ids):
             raise RuntimeError("vllm sharding manager is not work properly.")
 
@@ -185,17 +212,111 @@ class vLLMRollout(BaseRollout):
                     }
                 )
         else:
-            vllm_inputs = [{"prompt_token_ids": list(raw_prompt_ids)} for raw_prompt_ids in batch_raw_prompt_ids]
-
+            vllm_inputs = [{"prompt_token_ids": list(raw_prompt_ids)} for raw_prompt_ids in batch_raw_prompt_ids]        
         # users can customize different sampling_params at different run
         with self.update_sampling_params(**prompts.meta_info):
+    
+            # To align with verl:0.5.0 implementation, we expand the inputs when when sampling_params.n > 1.
+            if self.sampling_params.n > 1:
+                expanded_vllm_inputs = []
+                for vllm_input in vllm_inputs:
+                    for _ in range(self.sampling_params.n):
+                        expanded_vllm_inputs.append(deepcopy(vllm_input))
+                vllm_inputs = expanded_vllm_inputs
+            # Make a copy of the original sampling params 
+            use_sampling_params = deepcopy(self.sampling_params)
+            use_sampling_params.n = 1  # we handle n ourselves below
+            
+            # Handle custom rollout configurations
+            
+            sampling_params_list = []
+            if hasattr(self.config, 'custom_rollout_flag') and self.config.custom_rollout_flag == "ctrlg" and not is_validate:
+                # Initialize local random generator to incorporate randomness in rollout across devices
+                local_rng = random.Random(os.urandom(16))
+                # Get basic configs for exploration
+                batch_exp_r = getattr(self.config.custom_rollout_args, "batch_exp_r", None)
+                exp_r = getattr(self.config.custom_rollout_args, "exp_r", 0.0)
+                
+                # Compute exploration parameters
+                exp_n = int(self.sampling_params.n * exp_r)
+                non_exp_n = self.sampling_params.n - exp_n
+                print(f"🅰️ =>>self.sampling_params.n: {self.sampling_params.n}, non_exp_n: {non_exp_n}, exp_n: {exp_n}")
+                
+                # Set rm_type_idx for batch-level mixing
+                rm_type_idx = random.randrange(0, len(self.config.custom_rollout_args.ctrlg_reasoning_type_list))
+                
+                # Process each data group
+                for data_idx in range(0, len(vllm_inputs), self.sampling_params.n):
+                    vllm_input_group = vllm_inputs[data_idx: data_idx + self.sampling_params.n]
+                    assert all(x == vllm_input_group[0] for x in vllm_input_group), "Error: vllm_input_group should be the same for all items in the group"
+                    
+                    # Determine if this batch does exploration
+                    rand_num = local_rng.random()
+                    if rand_num < batch_exp_r:
+                        do_exp = True
+                    else:
+                        do_exp = False
+                    
+                    # Update rm_type_idx for data-level mixing
+                    if self.config.custom_rollout_args.mix_constraint_types == "data":
+                        # If mix constraints type across data, sample new rm_type_idx for each data group
+                        rm_type_idx = local_rng.randrange(0, len(self.config.custom_rollout_args.ctrlg_reasoning_type_list))
+                    
+                    for i in range(len(vllm_input_group)):
+                        if i < non_exp_n or not do_exp:
+                            # Non-exploration sample
+                            sampling_params_list.append(deepcopy(use_sampling_params))
+                        else:
+                            # Exploration sample with ctrl-g
+                            if self.config.custom_rollout_args.mix_constraint_types == "rollout":
+                                rm_type_idx = local_rng.randrange(0, len(self.config.custom_rollout_args.ctrlg_reasoning_type_list))
+                            
+                            rm_type = self.config.custom_rollout_args.ctrlg_reasoning_type_list[rm_type_idx]
+                            sp = deepcopy(use_sampling_params)
+                            setattr(sp, 'extra_args', {"clp_id": rm_type})
+                            sampling_params_list.append(sp)
+            send_sampling_params = sampling_params_list if len(sampling_params_list) > 0 else use_sampling_params
+
+            # Start generation
             completions: list[RequestOutput] = self.inference_engine.generate(
-                prompts=vllm_inputs, sampling_params=self.sampling_params, use_tqdm=self.use_tqdm
+                prompts=vllm_inputs, sampling_params=send_sampling_params, use_tqdm=self.use_tqdm
             )
-            response_ids = [output.token_ids for completion in completions for output in completion.outputs]
+            
+            # Cleanup ctrlg logits processor for more memory during update_actor
+            if self.config.custom_rollout_flag in ["ctrlg"] and not is_validate:
+                cleanup_sp = deepcopy(use_sampling_params)
+                setattr(cleanup_sp, 'extra_args', {"clean_up": True})
+                setattr(cleanup_sp, 'max_tokens', 1) # only need to generate 1 token for cleanup
+                _cleanup_output = self.inference_engine.generate(
+                    prompts=vllm_inputs[:1],  # dummy call to warm up
+                    sampling_params=cleanup_sp,
+                    use_tqdm=False,
+                )
+                del _cleanup_output
+            
+            
+            
+            response_ids = []
+            rollout_log_probs = []
+            for completion in completions:
+                for sample_id in range(len(completion.outputs)):
+                    response_tokens = completion.outputs[sample_id].token_ids
+                    response_ids.append(response_tokens)
+                    if calculate_log_probs:
+                        curr_log_prob = []
+                        for i, logprob in enumerate(completion.outputs[sample_id].logprobs):
+                            curr_log_prob.append(logprob[response_tokens[i]].logprob)
+                        rollout_log_probs.append(curr_log_prob)
+            
             response_ids = VF.pad_2d_list_to_length(
                 response_ids, self.pad_token_id, max_length=self.config.response_length
             ).to(input_ids.device)
+            
+            if calculate_log_probs:
+                rollout_log_probs = VF.pad_2d_list_to_length(
+                    rollout_log_probs, -1, max_length=self.config.response_length
+                ).to(input_ids.device)
+                rollout_log_probs = rollout_log_probs.to(torch.float32)
 
             if self.sampling_params.n > 1:
                 batch_size = batch_size * self.sampling_params.n
@@ -238,5 +359,9 @@ class vLLMRollout(BaseRollout):
             non_tensor_batch = {"multi_modal_data": batch_multi_modal_data}
         else:
             non_tensor_batch = {}
-
+        
+        if calculate_log_probs:
+            # we will recompute old log prob with actor
+            batch["rollout_log_probs"] = rollout_log_probs
+        
         return DataProto(batch=batch, non_tensor_batch=non_tensor_batch, meta_info=prompts.meta_info)

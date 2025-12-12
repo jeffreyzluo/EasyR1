@@ -465,9 +465,14 @@ class RayPPOTrainer:
 
             # store generations
             input_ids = test_batch.batch["prompts"]
-            input_texts = [self.tokenizer.decode(ids, skip_special_tokens=True) for ids in input_ids]
+            input_texts = [i_token.replace("<|endoftext|>", "").replace("<|image_pad|>", "") for i_token in self.tokenizer.batch_decode(input_ids, skip_special_tokens=False)]
             output_ids = test_batch.batch["responses"]
-            output_texts = [self.tokenizer.decode(ids, skip_special_tokens=True) for ids in output_ids]
+            output_texts = []
+            for o in self.tokenizer.batch_decode(output_ids, skip_special_tokens=False):
+                if "<|endoftext|>" in o:
+                    output_texts.append(o.split("<|endoftext|>")[0] + "<|endoftext|>")
+                else:
+                    output_texts.append(o)
             scores = reward_tensor.sum(-1).cpu().tolist()
             sample_inputs.extend(input_texts)
             sample_outputs.extend(output_texts)
@@ -507,9 +512,14 @@ class RayPPOTrainer:
 
             # store generations
             input_ids = test_batch.batch["prompts"]
-            input_texts = [self.tokenizer.decode(ids, skip_special_tokens=True) for ids in input_ids]
+            input_texts = [i_token.replace("<|endoftext|>", "").replace("<|image_pad|>", "") for i_token in self.tokenizer.batch_decode(input_ids, skip_special_tokens=False)]
             output_ids = test_batch.batch["responses"]
-            output_texts = [self.tokenizer.decode(ids, skip_special_tokens=True) for ids in output_ids]
+            output_texts = []
+            for o in self.tokenizer.batch_decode(output_ids, skip_special_tokens=False):
+                if "<|endoftext|>" in o:
+                    output_texts.append(o.split("<|endoftext|>")[0] + "<|endoftext|>")
+                else:
+                    output_texts.append(o)
             scores = reward_tensor.sum(-1).cpu().tolist()
             test_sample_inputs.extend(input_texts)
             test_sample_outputs.extend(output_texts)
@@ -525,9 +535,27 @@ class RayPPOTrainer:
 
 
         self.actor_rollout_ref_wg.release_rollout_engine()
+
+        self._dump_generations(
+            inputs=sample_inputs,
+            outputs=sample_outputs,
+            gts=sample_labels,
+            scores=sample_scores,
+            dump_path=os.path.join("validation_outputs", self.config.trainer.experiment_name)
+        )
+
+        if len(test_sample_inputs) > 0:
+            self._dump_generations(
+                inputs=test_sample_inputs,
+                outputs=test_sample_outputs,
+                gts=test_sample_labels,
+                scores=test_sample_scores,
+                dump_path=os.path.join("test_outputs", self.config.trainer.experiment_name)
+            )
+
         self._maybe_log_val_generations(sample_inputs, sample_outputs, sample_labels, sample_scores)
-        self.val_reward_score = torch.cat(reward_tensor_lst, dim=0).sum(-1).mean().item()
-        self.test_reward_score = torch.cat(test_reward_tensor_lst, dim=0).sum(-1).mean().item()
+        self.val_reward_score = torch.cat(reward_tensor_lst, dim=0).sum(-1).mean().item() if len(reward_tensor_lst) > 0 else 0.0
+        self.test_reward_score = torch.cat(test_reward_tensor_lst, dim=0).sum(-1).mean().item() if len(test_reward_tensor_lst) > 0 else 0.0
         val_reward_metrics = {f"val/{key}_reward": value for key, value in reduce_metrics(reward_metrics_lst).items()}
         val_length_metrics = {f"val_{key}": value for key, value in reduce_metrics(length_metrics_lst).items()}
         test_reward_metrics = {f"test/{key}_reward": value for key, value in reduce_metrics(test_reward_metrics_lst).items()}

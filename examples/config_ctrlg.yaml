@@ -9,7 +9,7 @@ data:
   video_fps: 2.0
   max_prompt_length: 6144
   max_response_length: 2048
-  rollout_batch_size: 512  # equivalent to verl's data.train_batch_size
+  rollout_batch_size: 256  # equivalent to verl's data.train_batch_size
   mini_rollout_batch_size: null  # equivalent to verl's data.gen_batch_size
   val_batch_size: 1024
   format_prompt: ./examples/format_prompt/math.jinja
@@ -30,11 +30,11 @@ algorithm:
   filter_key: overall
   filter_low: 0.01
   filter_high: 0.99
-  rollout_correction_bypass: false  # whether to set old_log_probs == log_probs during rollout data collection
+  rollout_correction_bypass: true  # whether to set old_log_probs == log_probs during rollout data collection
 
 worker:
   actor:
-    global_batch_size: 128  # equivalent to verl's actor.ppo_mini_batch_size
+    global_batch_size: 64  # equivalent to verl's actor.ppo_mini_batch_size
     micro_batch_size_per_device_for_update: 1  # equivalent to verl's actor.ppo_micro_batch_size_per_gpu
     micro_batch_size_per_device_for_experience: 2  # equivalent to verl's rollout.log_prob_micro_batch_size_per_gpu
     max_grad_norm: 1.0
@@ -60,7 +60,7 @@ worker:
       offload_optimizer: true  # true: more CPU memory; false: more GPU memory
 
   rollout:
-    n: 5
+    n: 16
     temperature: 1.0
     top_p: 1.0
     limit_images: 0
@@ -73,7 +73,7 @@ worker:
       temperature: 0.6
       top_p: 0.95
       n: 1
-    calculate_log_probs: false # whether to calculate log probs of the rollout responses
+    calculate_log_probs: true # whether to calculate log probs of the rollout responses
     custom_rollout_flag: null # flag for custom rollout method. Will later be used in the rollout engine to determine rollout strategy.
     custom_rollout_args:
       # args for custom rollout method
@@ -95,7 +95,7 @@ worker:
       offload_params: false
 
   reward:
-    reward_function: ./examples/reward_function/r1v.py:compute_score
+    reward_function: ./examples/reward_function/math.py:compute_score
 
 trainer:
   total_epochs: 15
@@ -107,7 +107,7 @@ trainer:
   n_gpus_per_node: 8
   max_try_make_batch: 20  # -1 means no limit
   val_freq: 5  # -1 to disable
-  val_before_train: false
+  val_before_train: true
   val_only: false
   val_generations_to_log: 3
   save_freq: 5  # -1 to disable

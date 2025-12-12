@@ -179,8 +179,12 @@ checkpoints/
 wandb/
 tensorboard_log/
 generation_log_2.5_hard/
+generation_log_2.5_medium/
 generation_log_3/
 generation_log_3_hard/
+rollout_outputs/
+validation_outputs/
+test_outputs/
 
 # data
 images/

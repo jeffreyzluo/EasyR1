@@ -3,9 +3,9 @@
 set -x
 
 export MODEL_PATH="JeffreyZLuo/OpenVLThinker-Medium-15" # replace it with your local file path
-export WANDB_API_KEY="659bf79726169f4e60ada8051807fbf93ac6490e"
+export WANDB_API_KEY="b4f60e0d6c24963e5eb86302706f8ae86c9ad08d"
 
-export CUDA_VISIBLE_DEVICES=6,7
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NUM_GPU=$(echo $CUDA_VISIBLE_DEVICES | awk -F',' '{print NF}')
 echo "Number of GPUs: $NUM_GPU"
 
@@ -37,6 +37,6 @@ python3 -m verl.trainer.main \
     worker.actor.model.freeze_vision_tower=True \
     ${CTRLG_ARGS} \
     trainer.experiment_name=qwen2.5_7B_medium_ctrlg_hard_V1 \
-    trainer.save_checkpoint_path=/data2/ponienkung/easyr1_models \
     trainer.n_gpus_per_node=$NUM_GPU \
-    trainer.total_epochs=30
+    trainer.load_checkpoint_path=/home/jeffrey/EasyR1/checkpoints/baselines/qwen2.5_7B_medium_ctrlg_hard_V1/global_step_330\
+    trainer.total_epochs=45

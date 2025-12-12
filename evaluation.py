@@ -82,7 +82,7 @@ def get_model_eval_config(model_type: ModelType) -> ModelEvaluationConfig:
             prompt_suffix=""  # Uses <answer> tags for extraction
         ),
         ModelType.QWEN: ModelEvaluationConfig(
-            model_name="Qwen/Qwen2.5-VL-7B-Instruct",
+            model_name="JeffreyZLuo/Qwen2.5-HMM-30-Hard",
             processor_name="Qwen/Qwen2.5-VL-7B-Instruct",
             prompt_suffix="\n\nYour final answer MUST BE put in \\boxed{}"
         )

@@ -139,6 +139,7 @@ class vLLMRollout(BaseRollout):
             "max_tokens": config.response_length,
             "detokenize": False,
             "logit_bias": _get_logit_bias(processor),
+            "logprobs": 0,
         }
         default_sampling_params = SamplingParams()
         for key in config.to_dict().keys():

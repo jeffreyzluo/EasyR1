@@ -224,6 +224,14 @@ class DataParallelPPOActor(BasePPOActor):
         select_keys.extend(["old_log_probs", "ref_log_probs", "advantages"])
         non_tensor_select_keys = ["multi_modal_inputs"]
 
+        # Include pre-computed IS weights if present in batch
+        # Weights are computed centrally in trainer and added to batch when algorithm.rollout_is=True
+        if "rollout_is_weights" in data.batch.keys():
+            select_keys.append("rollout_is_weights")
+        # Include rollout_log_probs for computing rollout_corr metrics in bypass mode
+        if "rollout_log_probs" in data.batch.keys():
+            select_keys.append("rollout_log_probs")
+        
         # Split to make minibatch iterator for updating the actor
         # See PPO paper for details. https://arxiv.org/abs/1707.06347
         mini_batches = data.select(select_keys, non_tensor_select_keys).split(self.config.global_batch_size_per_device)
@@ -248,6 +256,7 @@ class DataParallelPPOActor(BasePPOActor):
                     micro_batches = tqdm(micro_batches, desc="Update policy", position=2)
 
                 for micro_batch in micro_batches:
+                    batch_metrics = {}
                     model_inputs = {**micro_batch.batch, **micro_batch.non_tensor_batch}
                     response_mask = model_inputs["response_mask"]
                     old_log_probs = model_inputs["old_log_probs"]
@@ -256,6 +265,10 @@ class DataParallelPPOActor(BasePPOActor):
                     # all return: (bsz, response_length)
                     log_probs = self._forward_micro_batch(model_inputs, temperature=temperature)
 
+                    # Extract pre-computed rollout correction weights if present
+                    # Weights are computed centrally in trainer and added when algorithm.rollout_is=True
+                    rollout_is_weights = model_inputs.get("rollout_is_weights", None)
+                    
                     pg_loss, pg_metrics = compute_policy_loss(
                         old_log_probs=old_log_probs,
                         log_probs=log_probs,
@@ -266,7 +279,23 @@ class DataParallelPPOActor(BasePPOActor):
                         clip_ratio_dual=self.config.clip_ratio_dual,
                         loss_type=self.config.loss_type,
                         loss_avg_mode=self.config.loss_avg_mode,
+                        rollout_is_weights=rollout_is_weights,
                     )
+                    
+                    # Skip if using bypass_mode (no rollout_is_weights presented) loss (metrics already computed in pg_metrics)
+                    rollout_log_prob = model_inputs.get("rollout_log_probs", None)
+                    if rollout_is_weights is not None and rollout_log_prob is not None:
+                        # Compute metrics using CURRENT policy π_θ vs π_rollout
+                        # Tracks evolving off-policy gap as π_θ updates during mini-batch training
+                        from verl.trainer.rollout_corr_helper import compute_rollout_corr_metrics_from_logprobs
+
+                        rollout_corr_metrics = compute_rollout_corr_metrics_from_logprobs(
+                            log_prob=log_probs,
+                            rollout_log_prob=rollout_log_prob,
+                            response_mask=response_mask,
+                        )
+                        batch_metrics.update(rollout_corr_metrics)
+                    
                     if self.config.use_kl_loss and "ref_log_probs" in model_inputs:
                         ref_log_probs = model_inputs["ref_log_probs"]
                         # compute kl loss
@@ -285,7 +314,7 @@ class DataParallelPPOActor(BasePPOActor):
                     loss = loss * torch.sum(response_mask) * self.world_size / total_response_tokens
                     loss.backward()
 
-                    batch_metrics = {f"actor/{k}": v for k, v in pg_metrics.items()}
+                    batch_metrics.update({f"actor/{k}": v for k, v in pg_metrics.items()})
                     batch_metrics["actor/pg_loss"] = pg_loss.detach().item()
                     append_to_dict(metrics, batch_metrics)
 

@@ -416,6 +416,7 @@ def compute_policy_loss(
     clip_ratio_dual: float,
     loss_type: Literal["default", "gspo", "gspo_token", "cispo"],
     loss_avg_mode: Literal["token", "seq"],
+    rollout_is_weights: torch.Tensor | None = None,
     **kwargs,
 ) -> tuple[torch.Tensor, dict[str, float]]:
     """Compute the clipped policy objective and related metrics for PPO.
@@ -490,6 +491,11 @@ def compute_policy_loss(
         clipped_pg_loss_lower = torch.min(clipped_pg_loss_higher, pg_loss3)  # clip if pg_loss > pg_loss3 and adv < 0
         final_pg_loss = torch.where(advantages < 0, clipped_pg_loss_lower, clipped_pg_loss_higher)
         metrics["pg_clipfrac_lower"] = (clipped_pg_loss_higher > pg_loss3).float() * (advantages < 0).float()
+
+    # Apply rollout correction weights if provided
+    if rollout_is_weights is not None:
+        print(f"😀 =>>rollout_is_weights: {rollout_is_weights}")
+        final_pg_loss = final_pg_loss * rollout_is_weights
 
     final_pg_loss = average_loss(final_pg_loss, response_mask, mode=loss_avg_mode)
     metrics = {k: VF.masked_mean(v, response_mask).detach().item() for k, v in metrics.items()}

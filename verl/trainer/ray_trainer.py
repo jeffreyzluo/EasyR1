@@ -730,8 +730,9 @@ class RayPPOTrainer:
                     old_log_probs = self.actor_rollout_ref_wg.compute_log_probs(batch)
                     batch = batch.union(old_log_probs)
 
-                rollout_correction_bypass = getattr(self.config.algorithm, "rollout_correction_bypass", None)
-                if rollout_correction_bypass: # Set the old_log_probs to rollout_log_probs for bypassing rollout correction
+                rollout_corr_config = getattr(self.config.algorithm, "rollout_correction", None)
+                bypass_recomputing_logprobs = rollout_corr_config and getattr(rollout_corr_config, "bypass_mode", False)
+                if bypass_recomputing_logprobs: # Set the old_log_probs to rollout_log_probs for bypassing rollout correction
                     # Also calculate the difference for logging
                     # TODO: Calculate and log the KL divergence instead of simple difference. First check the type of the values.
                     # K3 estimator for vllm-kl: http://joschu.net/blog/kl-approx.html
@@ -759,7 +760,24 @@ class RayPPOTrainer:
                     with timer("values", timing_raw):
                         values = self.critic_wg.compute_values(batch)
                         batch = batch.union(values)
+                
+                
+                # Compute rollout correction: IS weights, rejection sampling, and metrics
+                # Only runs in decoupled mode (computes once per batch using stable π_old)
+                # In bypass mode, this is skipped - actor computes metrics from evolving π_θ vs π_rollout
+                if (
+                    rollout_corr_config is not None
+                    and "rollout_log_probs" in batch.batch
+                    and not bypass_recomputing_logprobs  # Only in decoupled mode
+                ):
+                    from verl.trainer.rollout_corr_helper import compute_rollout_correction_and_add_to_batch
 
+                    # Compute IS weights, apply rejection sampling, compute metrics
+                    batch, is_metrics = compute_rollout_correction_and_add_to_batch(batch, rollout_corr_config)
+                    # IS and off-policy metrics already have rollout_corr/ prefix
+                    metrics.update(is_metrics)
+                
+                
                 with timer("adv", timing_raw):
                     if "token_level_scores" not in batch.batch:
                         # get token level scores asynchronously

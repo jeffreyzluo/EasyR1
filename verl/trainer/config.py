@@ -31,6 +31,30 @@ def recursive_post_init(dataclass_obj):
         if is_dataclass(getattr(dataclass_obj, attr.name)):
             recursive_post_init(getattr(dataclass_obj, attr.name))
 
+@dataclass
+class RolloutCorrectionConfig:
+    """Configuration for Rollout Correction (addresses off-policy issues in RL training).
+
+    The inheritance from BaseConfig provides omegaconf.DictConfig-like interface for a dataclass config.
+
+    Rollout Correction handles off-policiness from multiple sources:
+    1. Policy mismatch: Rollout policy (e.g., vLLM BF16) vs Training policy (e.g., FSDP FP32)
+    2. Model update staleness: Rollout data collected from older policy checkpoints
+    3. General off-policy scenarios: Any distribution shift between data collection and training
+
+    For more details, see:
+    "When Speed Kills Stability: Demystifying RL Collapse from the Training-Inference Mismatch"
+    https://richardli.xyz/rl-collapse"""
+
+    rollout_is: Optional[str] = None
+    rollout_is_threshold: float = 2.0
+    rollout_rs: Optional[str] = None
+    rollout_rs_threshold: Optional[float] = None
+    rollout_rs_threshold_lower: Optional[float] = None
+    rollout_token_veto_threshold: Optional[float] = None
+    bypass_mode: bool = False
+    loss_type: str = "ppo_clip"
+    rollout_is_batch_normalize: bool = False
 
 @dataclass
 class DataConfig:
@@ -93,8 +117,7 @@ class AlgorithmConfig:
     """filter out low reward samples if online filtering"""
     filter_high: float = 0.99
     """filter out high reward samples if online filtering"""
-    rollout_correction_bypass: bool = False
-    """bypass rollout correction if set to True"""
+    rollout_correction: RolloutCorrectionConfig = field(default_factory=RolloutCorrectionConfig)
 
 
 @dataclass

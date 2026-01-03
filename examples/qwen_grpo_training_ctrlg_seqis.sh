@@ -10,13 +10,19 @@ export NUM_GPU=$(echo $CUDA_VISIBLE_DEVICES | awk -F',' '{print NF}')
 echo "Number of GPUs: $NUM_GPU"
 
 # ----------------- ctrlg config -----------------
-export exp_r=1  # exploration rate for a single example rollout
+export exp_r=1.0  # exploration rate for a single example rollout
 export batch_exp_r=1.0  # exploration rate for a full rollout batch to explore. 0.5 means there's 50% chance to explore
 export mix_constraint_types="rollout"  # ["batch", "data", "rollout"], each means that the reasoning type is mixed "under" this level.
-# export EXPERIMENT_NAME="debug_1"
+# export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V3"
+# export ctrlg_reasoning_type_list='["VisualReinspection","Reflection"]'
+# export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V4"
+# export ctrlg_reasoning_type_list='["SymbolVerification","GeometricGrounding"]'
+# export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V5"
 # export ctrlg_reasoning_type_list='["General"]'
-export EXPERIMENT_NAME="debug_3"
-export ctrlg_reasoning_type_list=["General","Reflection","VisualGrounding"]
+# export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V6"
+# export ctrlg_reasoning_type_list='["SymbolVerification","GeometricGrounding","VisualReinspection"]'  # a list for ctrlg reasoning type
+export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V9"
+export ctrlg_reasoning_type_list='["Reflection","General","VisualGrounding"]'
 export ctrlg_variant="Qwen25VLBaseCtrlgProcessorV0"  # specify the ctrlg variant here
 
 export NCCL_TIMEOUT=12000
@@ -30,6 +36,10 @@ worker.rollout.custom_rollout_args.ctrlg_reasoning_type_list=${ctrlg_reasoning_t
 worker.rollout.engine_kwargs.vllm.logits_processors=[\"ctrlg_custom_vllm:${ctrlg_variant}\"]
 "
 
+IS_ARG_STR="algorithm.rollout_correction.rollout_is=sequence \
+algorithm.rollout_correction.rollout_is_alpha=0 \
+algorithm.rollout_correction.rollout_is_batch_normalize=True"
+
 python3 -m verl.trainer.main \
     config=examples/config_ctrlg.yaml \
     data.train_files=ydeng9/OpenVLThinker-grpo-hard@train \
@@ -38,10 +48,9 @@ python3 -m verl.trainer.main \
     data.max_response_length=2048 \
     worker.actor.model.model_path=${MODEL_PATH} \
     worker.actor.model.freeze_vision_tower=True \
-    algorithm.rollout_correction.rollout_is=token \
+    ${IS_ARG_STR} \
     ${CTRLG_ARGS} \
     trainer.val_before_train=false \
-    trainer.logger=[] \
     trainer.experiment_name=${EXPERIMENT_NAME} \
     trainer.n_gpus_per_node=$NUM_GPU \
     trainer.total_epochs=45

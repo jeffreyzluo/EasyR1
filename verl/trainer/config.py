@@ -55,6 +55,7 @@ class RolloutCorrectionConfig:
     bypass_mode: bool = False
     loss_type: str = "ppo_clip"
     rollout_is_batch_normalize: bool = False
+    rollout_is_alpha: float = 1.0
 
 @dataclass
 class DataConfig:

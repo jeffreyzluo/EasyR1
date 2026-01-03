@@ -2,6 +2,7 @@ import os
 import logging
 import argparse
 import json
+import sys
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
@@ -15,26 +16,13 @@ from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
 from qwen_vl_utils import process_vision_info
 from mathruler.grader import grade_answer, extract_boxed_content
 
-# Basic Setup
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('evaluation.log'),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
-
-# Configuration
+# --- Configuration Enums & Classes (Same as before) ---
 
 class ModelType(Enum):
-    """Enum to specify the model being evaluated."""
     OPENVLTHINKER = "openvlthinker"
     QWEN = "qwen"
 
 class DatasetType(Enum):
-    """Enum for supported datasets."""
     MATHVISTA = "mathvista"
     MATHVERSE = "mathverse"
     MATHVISION = "mathvision"
@@ -50,7 +38,6 @@ class DatasetType(Enum):
 
 @dataclass
 class DatasetConfig:
-    """Stores configuration for loading a dataset."""
     name: str
     split: str
     image_field: Union[str, List[str]]
@@ -63,7 +50,6 @@ class DatasetConfig:
 
 @dataclass
 class ModelEvaluationConfig:
-    """Stores model-specific evaluation parameters."""
     model_name: str
     processor_name: str
     prompt_suffix: str
@@ -74,15 +60,14 @@ class ModelEvaluationConfig:
     repetition_penalty: float = 1.0
 
 def get_model_eval_config(model_type: ModelType) -> ModelEvaluationConfig:
-    """Returns the specific configuration for a given model type."""
     configs = {
         ModelType.OPENVLTHINKER: ModelEvaluationConfig(
             model_name="ydeng9/OpenVLThinker-7B-v1.2",
             processor_name="Qwen/Qwen2.5-VL-7B-Instruct",
-            prompt_suffix=""  # Uses <answer> tags for extraction
+            prompt_suffix=""
         ),
         ModelType.QWEN: ModelEvaluationConfig(
-            model_name="JeffreyZLuo/Qwen2.5-7B-30-Hard",
+            model_name="JeffreyZLuo/Qwen2.5-45-Hard-V8",
             processor_name="Qwen/Qwen2.5-VL-7B-Instruct",
             prompt_suffix="\n\nYour final answer MUST BE put in \\boxed{}"
         )
@@ -90,7 +75,7 @@ def get_model_eval_config(model_type: ModelType) -> ModelEvaluationConfig:
     return configs[model_type]
 
 def get_dataset_config(dataset_type: DatasetType) -> DatasetConfig:
-    """Returns the configuration for a given dataset."""
+    # (Configuration dictionary remains the same as your original script)
     configs = {
         DatasetType.MATHVISTA: DatasetConfig(name="AI4Math/MathVista", split="testmini", image_field="decoded_image", instruction_field="query", response_field="answer", choices_field="choices"),
         DatasetType.MATHVERSE: DatasetConfig(name="AI4Math/MathVerse", subset="testmini", split="testmini", image_field="image", instruction_field="query_cot", response_field="answer"),
@@ -107,8 +92,9 @@ def get_dataset_config(dataset_type: DatasetType) -> DatasetConfig:
     }
     return configs[dataset_type]
 
+# --- Helper Classes ---
+
 class Evaluator:
-    """Handles model loading and response generation."""
     def __init__(self, model_config: ModelEvaluationConfig, device: str):
         self.device = device
         self.model_config = model_config
@@ -116,28 +102,18 @@ class Evaluator:
         self.processor = self._load_processor()
 
     def _load_model(self) -> Qwen2_5_VLForConditionalGeneration:
-        logger.info(f"Loading model: {self.model_config.model_name}")
-        try:
-            return Qwen2_5_VLForConditionalGeneration.from_pretrained(
-                self.model_config.model_name,
-                torch_dtype=torch.bfloat16,
-                attn_implementation="flash_attention_2",
-                device_map=self.device
-            )
-        except Exception as e:
-            logger.error(f"Failed to load model: {e}")
-            raise
+        print(f"Loading model: {self.model_config.model_name}")
+        return Qwen2_5_VLForConditionalGeneration.from_pretrained(
+            self.model_config.model_name,
+            torch_dtype=torch.bfloat16,
+            attn_implementation="flash_attention_2",
+            device_map=self.device
+        )
 
     def _load_processor(self) -> AutoProcessor:
-        logger.info(f"Loading processor: {self.model_config.processor_name}")
-        try:
-            return AutoProcessor.from_pretrained(self.model_config.processor_name)
-        except Exception as e:
-            logger.error(f"Failed to load processor: {e}")
-            raise
+        return AutoProcessor.from_pretrained(self.model_config.processor_name)
 
     def generate_response(self, image_urls: Union[str, List[str]], instruction: str) -> Optional[str]:
-        """Generates a model response for a given instruction and image(s)."""
         full_instruction = instruction + self.model_config.prompt_suffix
         urls = [image_urls] if not isinstance(image_urls, list) else image_urls
         
@@ -161,36 +137,27 @@ class Evaluator:
             
             trimmed_ids = [out[len(ins):] for ins, out in zip(inputs.input_ids, generated_ids)]
             return self.processor.batch_decode(trimmed_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
-        
         except Exception as e:
-            logger.error(f"Error during response generation: {e}")
+            print(f"Error generating response: {e}")
             return None
 
-# Data Handling & Formatting
-
 def load_dataset_items(config: DatasetConfig) -> List[Dict[str, Any]]:
-    """Loads and formats items from a Hugging Face dataset."""
-    logger.info(f"Loading dataset: {config.name} ({config.subset or 'default'}) - split: {config.split}")
-    try:
-        dataset = load_dataset(config.name, config.subset, split=config.split) if config.subset else load_dataset(config.name, split=config.split)
-        items = []
-        for item in dataset:
-            image_url = [img for img in (item.get(x) for x in config.image_field)] if isinstance(config.image_field, list) else item[config.image_field]
-            items.append({
-                'image_url': image_url,
-                'instruction': item.get(config.instruction_field, ''),
-                'response': item.get(config.response_field, ''),
-                'choices': item.get(config.choices_field),
-                'options': item.get(config.options_field, []),
-                'source': item.get(config.source_field)
-            })
-        return items
-    except Exception as e:
-        logger.error(f"Failed to load dataset: {e}")
-        raise
+    print(f"Loading dataset: {config.name}")
+    dataset = load_dataset(config.name, config.subset, split=config.split) if config.subset else load_dataset(config.name, split=config.split)
+    items = []
+    for item in dataset:
+        image_url = [img for img in (item.get(x) for x in config.image_field)] if isinstance(config.image_field, list) else item[config.image_field]
+        items.append({
+            'image_url': image_url,
+            'instruction': item.get(config.instruction_field, ''),
+            'response': item.get(config.response_field, ''),
+            'choices': item.get(config.choices_field),
+            'options': item.get(config.options_field, []),
+            'source': item.get(config.source_field)
+        })
+    return items
 
 def format_instruction(instruction: str, options: Optional[List[str]] = None, is_yes_no: bool = False, is_vision_only: bool = False) -> str:
-    """Formats the instruction based on the question type and options."""
     options = eval(options) if isinstance(options, str) else options
     hint = "Hint: Please answer the question"
     if is_vision_only:
@@ -209,111 +176,126 @@ def format_instruction(instruction: str, options: Optional[List[str]] = None, is
     return f"{hint} requiring an answer.\nQuestion: {instruction}"
 
 def process_ground_truth(response: str, choices: Optional[List[str]], options: Optional[List[str]] = None) -> str:
-    """Converts a ground truth answer to a letter option if applicable."""
     search_list, options_map = choices or options, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
     if search_list:
         try: return options_map[search_list.index(response)]
         except (ValueError, IndexError): pass
     return response
 
-# Answer Extraction, Grading & Saving
-
 def extract_answers(reasoning: str, model_type: ModelType) -> List[str]:
-    """Extracts a list of candidate final answers from the model's reasoning."""
     if not reasoning: return ["Failed to generate."]
     if model_type == ModelType.OPENVLTHINKER:
         if "</answer>" in reasoning: return [reasoning.split("<answer>")[-1].split("</answer>")[0].strip()]
-        logger.warning("Could not find <answer> tag in response.")
         return ["Failed to extract."]
     if model_type == ModelType.QWEN:
         candidates = []
         if (boxed := extract_boxed_content(reasoning)): candidates.append(boxed)
         if "answer:" in reasoning.lower(): candidates.append(reasoning.lower().split("answer:")[-1].strip())
-        if not candidates: logger.warning("Could not find boxed content or 'Answer:' in response.")
         return candidates or ["Failed to extract."]
     return [reasoning]
 
 def check_correctness(gt: str, preds: List[str]) -> bool:
-    """Checks if any predicted answer is correct."""
     return any(gt.lower() == pred.lower() or grade_answer(gt, pred) for pred in preds if isinstance(gt, str) and isinstance(pred, str))
 
 def save_results(results: List[Dict], output_file: str) -> None:
-    """Saves evaluation results to a JSON file."""
-    try:
-        Path(output_file).parent.mkdir(parents=True, exist_ok=True)
-        with open(output_file, 'w') as f: json.dump(results, f, indent=2)
-        logger.info(f"Saved {len(results)} results to {output_file}")
-    except Exception as e: logger.error(f"Failed to save results: {e}")
+    Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+    with open(output_file, 'w') as f: json.dump(results, f, indent=2)
 
-# --- Main Execution Logic ---
+# --- Main ---
 
 def main():
-    parser = argparse.ArgumentParser(description='Unified evaluation script for vision-language models.')
-    parser.add_argument('--model', type=str, choices=[m.value for m in ModelType], required=True, help='Model to evaluate.')
-    parser.add_argument('--dataset', type=str, choices=[d.value for d in DatasetType], required=True, help='Dataset to evaluate on.')
-    parser.add_argument('--cuda', type=int, default=0, help='CUDA device number to use.')
+    parser = argparse.ArgumentParser(description='Multi-dataset sharded evaluation.')
+    parser.add_argument('--model', type=str, choices=[m.value for m in ModelType], required=True)
+    parser.add_argument('--datasets', type=str, required=True, help='Comma-separated list of datasets (e.g. mathvista,mathverse)')
+    parser.add_argument('--cuda', type=int, default=0, help='CUDA device ID')
+    parser.add_argument('--num_shards', type=int, default=1, help='Total shards')
+    parser.add_argument('--shard_id', type=int, default=0, help='Current shard ID')
     args = parser.parse_args()
 
+    # Log setup (per shard to avoid conflict)
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[logging.FileHandler(f'evaluation_shard_{args.shard_id}.log'), logging.StreamHandler()]
+    )
+    logger = logging.getLogger(__name__)
+
     device = f"cuda:{args.cuda}" if torch.cuda.is_available() else "cpu"
-    model_type, dataset_type = ModelType(args.model), DatasetType(args.dataset)
-    logger.info(f"Starting evaluation for model '{model_type.name}' on dataset '{dataset_type.name}' using device '{device}'")
-
+    model_type = ModelType(args.model)
     model_config = get_model_eval_config(model_type)
-    dataset_config = get_dataset_config(dataset_type)
-    output_file = f"./evaluation/outputs1.0/{dataset_type.value}_{model_config.model_name.split('/')[-1]}.json"
-
-    evaluator = Evaluator(model_config, device)
-    dataset_items = load_dataset_items(dataset_config)
     
-    results, correct_count, source_stats = [], 0, {}
+    # Load model once for all datasets
+    evaluator = Evaluator(model_config, device)
 
-    for i, item in tqdm(enumerate(dataset_items), total=len(dataset_items), desc=f"Evaluating"):
-        # 1. Format instruction
-        instruction = format_instruction(
-            item['instruction'], item.get('options'),
-            is_yes_no=(dataset_type == DatasetType.HALLUSIONBENCH),
-            is_vision_only=(dataset_type == DatasetType.MMMU_PRO_VISION)
-        )
+    # Parse dataset list
+    dataset_names = [d.strip() for d in args.datasets.split(',')]
+    
+    for ds_name in dataset_names:
+        try:
+            dataset_type = DatasetType(ds_name)
+        except ValueError:
+            logger.error(f"Unknown dataset: {ds_name}. Skipping.")
+            continue
 
-        # 2. Generate and extract answers
-        reasoning = evaluator.generate_response(item['image_url'], instruction)
-        predicted_answers = extract_answers(reasoning, model_type)
+        dataset_config = get_dataset_config(dataset_type)
         
-        # 3. Process ground truth and grade
-        if dataset_type in [DatasetType.MMMU_PRO_VISION, DatasetType.MMMU_PRO_4, DatasetType.MMMU_PRO_10]:
-            gt_answer = item['response']
-        else:
-            gt_answer = process_ground_truth(item['response'], item.get('choices'), item.get('options'))
+        # Output filename includes shard info
+        output_file = f"./evaluation/outputs/{dataset_type.value}_{model_config.model_name.split('/')[-1]}_shard_{args.shard_id}_of_{args.num_shards}.json"
         
-        if dataset_type == DatasetType.HALLUSIONBENCH: gt_answer = "Yes" if gt_answer == "1" else "No"
+        logger.info(f"--- Starting {ds_name} (Shard {args.shard_id}/{args.num_shards}) ---")
+        
+        try:
+            all_items = load_dataset_items(dataset_config)
             
-        is_correct = check_correctness(gt_answer, predicted_answers)
-        if is_correct: correct_count += 1
-        
-        # 4. Store results
-        result_item = {'id': i, 'instruction': item['instruction'], 'ground_truth': gt_answer, 'reasoning': reasoning, 'predicted_answers': predicted_answers, 'is_correct': is_correct}
-        if item.get('source'):
-            result_item['source'] = item['source']
-            source_stats.setdefault(item['source'], {'correct': 0, 'total': 0})
-            source_stats[item['source']]['total'] += 1
-            if is_correct: source_stats[item['source']]['correct'] += 1
-        results.append(result_item)
-        
-        if (i + 1) % 50 == 0: save_results(results, output_file)
+            # Sharding Logic
+            total_items = len(all_items)
+            chunk_size = total_items // args.num_shards
+            start_idx = args.shard_id * chunk_size
+            end_idx = start_idx + chunk_size if args.shard_id < args.num_shards - 1 else total_items
+            shard_items = all_items[start_idx:end_idx]
+            
+            logger.info(f"Processing items {start_idx} to {end_idx} (Total: {len(shard_items)})")
 
-    # Final save and report
-    save_results(results, output_file)
-    accuracy = (correct_count / len(dataset_items)) * 100 if dataset_items else 0
-    logger.info(f"--- Evaluation Complete ---\n"
-                f"Model: {model_type.name}\n"
-                f"Dataset: {dataset_type.name}\n"
-                f"Accuracy: {accuracy:.2f}% ({correct_count}/{len(dataset_items)})")
+            results, correct_count = [], 0
+            
+            for i, item in tqdm(enumerate(shard_items), total=len(shard_items), desc=f"{ds_name} Shard {args.shard_id}"):
+                instruction = format_instruction(
+                    item['instruction'], item.get('options'),
+                    is_yes_no=(dataset_type == DatasetType.HALLUSIONBENCH),
+                    is_vision_only=(dataset_type == DatasetType.MMMU_PRO_VISION)
+                )
 
-    if dataset_type == DatasetType.SFTSEED and source_stats:
-        logger.info("--- Accuracy by Source (SFTSEED) ---")
-        for source, stats in sorted(source_stats.items()):
-            acc = (stats['correct'] / stats['total']) * 100 if stats['total'] > 0 else 0
-            logger.info(f"  - {source}: {acc:.2f}% ({stats['correct']}/{stats['total']})")
+                reasoning = evaluator.generate_response(item['image_url'], instruction)
+                predicted_answers = extract_answers(reasoning, model_type)
+                
+                if dataset_type in [DatasetType.MMMU_PRO_VISION, DatasetType.MMMU_PRO_4, DatasetType.MMMU_PRO_10]:
+                    gt_answer = item['response']
+                else:
+                    gt_answer = process_ground_truth(item['response'], item.get('choices'), item.get('options'))
+                
+                if dataset_type == DatasetType.HALLUSIONBENCH: gt_answer = "Yes" if gt_answer == "1" else "No"
+                    
+                is_correct = check_correctness(gt_answer, predicted_answers)
+                if is_correct: correct_count += 1
+                
+                # Use global index (start_idx + i) for ID to allow easy merging later
+                results.append({
+                    'id': start_idx + i, 
+                    'instruction': item['instruction'], 
+                    'ground_truth': gt_answer, 
+                    'reasoning': reasoning, 
+                    'predicted_answers': predicted_answers, 
+                    'is_correct': is_correct,
+                    'source': item.get('source')
+                })
+                
+                if (i + 1) % 10 == 0: save_results(results, output_file)
+
+            save_results(results, output_file)
+            logger.info(f"Finished {ds_name} Shard {args.shard_id}. Partial Acc: {correct_count}/{len(shard_items)}")
+            
+        except Exception as e:
+            logger.error(f"Failed processing {ds_name}: {e}")
 
 if __name__ == "__main__":
     main()

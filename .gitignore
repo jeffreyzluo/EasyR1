@@ -185,6 +185,7 @@ generation_log_3_hard/
 rollout_outputs/
 validation_outputs/
 test_outputs/
+evaluation/
 
 # data
 images/

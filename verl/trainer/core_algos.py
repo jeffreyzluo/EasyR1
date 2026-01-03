@@ -494,7 +494,7 @@ def compute_policy_loss(
 
     # Apply rollout correction weights if provided
     if rollout_is_weights is not None:
-        print(f"😀 =>>rollout_is_weights: {rollout_is_weights}")
+        # print(f"😀 =>>rollout_is_weights: {rollout_is_weights}")
         final_pg_loss = final_pg_loss * rollout_is_weights
 
     final_pg_loss = average_loss(final_pg_loss, response_mask, mode=loss_avg_mode)

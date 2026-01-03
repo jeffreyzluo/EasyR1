@@ -4,22 +4,15 @@ Keyphrases dictionary v0 for CtrlG processing.
 
 CONSTRAINTS_DICT = {
     # --- VISUAL EXTRACTION & VERIFICATION (VLM Specific) ---
-    "SymbolVerification": [[
-        " signs",
-        " text",
+    "VisualGrounding": [[
         " notation",
         " symbols",
-        " title"
-    ]],
-    "GeometricGrounding": [[
+        " title",
         " alignment",
-        " lines",
         " coordinates",
         " layout",
         " scale",
-        " shape"
-    ]],
-    "VisualReinspection": [[
+        " shape",
         " image",
         " describe",
         " see",
@@ -29,39 +22,18 @@ CONSTRAINTS_DICT = {
     ]],
 
     # --- LOGICAL REASONING (From Original List) ---
-    "Backwarding": [[
+    "General": [[
         " backwards",
         " reverse",
-        " inverse"
-    ]],
-    "Backtracking": [[
-        " go back",
-        " going back",
-        " undo",
-        " another way",
         " recall",
-    ]],
-    "Induction": [[
-        " small example",
-        " simple numbers",
-        " pattern"
-    ]],
-    "Counterfactual": [[
-        " what if",
         " imagine",
         " alternatively",
-        " maybe"
-    ]],
-    "OverthinkingAwareness": [[
-        " is getting too long",
-        " overcomplicating",
-        " going in circles",
-        " overthink",
-        " sufficient to answer",
+        " maybe",
+        " small example",
+        " pattern"
     ]],
     "Reflection": [[
         " Wait",
-        " wait",
         " double-check",
         " doube check"
         " verify",

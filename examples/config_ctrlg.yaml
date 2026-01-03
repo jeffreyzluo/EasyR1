@@ -9,7 +9,7 @@ data:
   video_fps: 2.0
   max_prompt_length: 6144
   max_response_length: 2048
-  rollout_batch_size: 256  # equivalent to verl's data.train_batch_size
+  rollout_batch_size: 512  # equivalent to verl's data.train_batch_size
   mini_rollout_batch_size: null  # equivalent to verl's data.gen_batch_size
   val_batch_size: 1024
   format_prompt: ./examples/format_prompt/math.jinja
@@ -41,10 +41,11 @@ algorithm:
     rollout_token_veto_threshold: null     # Per-token veto threshold (null = disabled)
     bypass_mode: false  # Skip old_log_prob computation (sets π_old = π_rollout)
     loss_type: ppo_clip            # Loss type in bypass mode: "ppo_clip" (default) or "reinforce"
+    rollout_is_alpha: 1.0
 
 worker:
   actor:
-    global_batch_size: 64  # equivalent to verl's actor.ppo_mini_batch_size
+    global_batch_size: 128  # equivalent to verl's actor.ppo_mini_batch_size
     micro_batch_size_per_device_for_update: 1  # equivalent to verl's actor.ppo_micro_batch_size_per_gpu
     micro_batch_size_per_device_for_experience: 2  # equivalent to verl's rollout.log_prob_micro_batch_size_per_gpu
     max_grad_norm: 1.0
@@ -70,7 +71,7 @@ worker:
       offload_optimizer: true  # true: more CPU memory; false: more GPU memory
 
   rollout:
-    n: 16
+    n: 5
     temperature: 1.0
     top_p: 1.0
     limit_images: 0

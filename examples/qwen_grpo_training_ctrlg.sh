@@ -13,7 +13,16 @@ echo "Number of GPUs: $NUM_GPU"
 export exp_r=1.0  # exploration rate for a single example rollout
 export batch_exp_r=1.0  # exploration rate for a full rollout batch to explore. 0.5 means there's 50% chance to explore
 export mix_constraint_types="rollout"  # ["batch", "data", "rollout"], each means that the reasoning type is mixed "under" this level.
-export ctrlg_reasoning_type_list='["SymbolVerification","GeometricGrounding","VisualReinspection","Backwarding","Backtracking","Induction","Counterfactual","OverthinkingAwareness"]'  # a list for ctrlg reasoning type
+# export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V3"
+# export ctrlg_reasoning_type_list='["VisualReinspection","Reflection"]'
+# export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V4"
+# export ctrlg_reasoning_type_list='["SymbolVerification","GeometricGrounding"]'
+# export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V5"
+# export ctrlg_reasoning_type_list='["General"]'
+# export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V6"
+# export ctrlg_reasoning_type_list='["SymbolVerification","GeometricGrounding","VisualReinspection"]'  # a list for ctrlg reasoning type
+export EXPERIMENT_NAME="qwen2.5_7B_medium_ctrlg_hard_V7"
+export ctrlg_reasoning_type_list='["Reflection","General","VisualGrounding"]'
 export ctrlg_variant="Qwen25VLBaseCtrlgProcessorV0"  # specify the ctrlg variant here
 
 export NCCL_TIMEOUT=12000
@@ -35,8 +44,9 @@ python3 -m verl.trainer.main \
     data.max_response_length=2048 \
     worker.actor.model.model_path=${MODEL_PATH} \
     worker.actor.model.freeze_vision_tower=True \
+    algorithm.rollout_correction.rollout_is=token \
     ${CTRLG_ARGS} \
-    trainer.experiment_name=qwen2.5_7B_medium_ctrlg_hard_V1 \
+    trainer.val_before_train=false \
+    trainer.experiment_name=${EXPERIMENT_NAME} \
     trainer.n_gpus_per_node=$NUM_GPU \
-    trainer.load_checkpoint_path=/home/jeffrey/EasyR1/checkpoints/baselines/qwen2.5_7B_medium_ctrlg_hard_V1/global_step_330\
     trainer.total_epochs=45

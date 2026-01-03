@@ -374,7 +374,7 @@ class RayPPOTrainer:
         else:
             print(f"No dataloader state found at {dataloader_path}, will start from scratch.")
 
-    def _dump_generations(self, inputs, outputs, gts, scores, dump_path, sort_uid = None):
+    def _dump_generations(self, inputs, outputs, gts, scores, dump_path, extra_infos_dict=None):
         """Dump rollout/validation samples as JSONL."""
         os.makedirs(dump_path, exist_ok=True)
         filename = os.path.join(dump_path, f"{self.global_step}.jsonl")
@@ -386,8 +386,17 @@ class RayPPOTrainer:
             "gts": gts,
             "score": scores,
             "step": [self.global_step] * n,
-        }         
-                
+        }       
+        if extra_infos_dict is not None:  
+            for k, v in extra_infos_dict.items():
+                if len(v) == len(inputs):
+                    try:
+                        json.dumps(v)
+                        base_data.update({k: v})
+                    except:
+                        print(f"{k} is not dumpable")
+                else:
+                    print("Warning: Lengths of extra info doesn't match inputs length")      
 
         # Sort the data based on uid
         # if sort_uid is not None:
@@ -836,14 +845,18 @@ class RayPPOTrainer:
 
                     # Send the uid to dump function
                     uid_list = [uid for uid in batch.non_tensor_batch["uid"]]
-
+                    extra_infos_dict={}
+                    rollout_is_weights = batch.batch.get("rollout_is_weights", None)
+                    if rollout_is_weights is not None:
+                        rollout_is_weights_0 = rollout_is_weights[:, 0].cpu().tolist() # only meaningful for sequence-level IS
+                        extra_infos_dict.update({"rollout_is_weights_0":rollout_is_weights_0})
                     self._dump_generations(
                         inputs=inputs,
                         outputs=outputs,
                         gts=sample_gts,
                         scores=scores,
                         dump_path=os.path.join("rollout_outputs", self.config.trainer.experiment_name),
-                        sort_uid = uid_list
+                        extra_infos_dict=extra_infos_dict
                     )
                 # validate
                 if (

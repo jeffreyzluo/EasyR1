@@ -289,12 +289,15 @@ class DataParallelPPOActor(BasePPOActor):
                         # Tracks evolving off-policy gap as π_θ updates during mini-batch training
                         from verl.trainer.rollout_corr_helper import compute_rollout_corr_metrics_from_logprobs
 
-                        rollout_corr_metrics = compute_rollout_corr_metrics_from_logprobs(
-                            log_prob=log_probs,
-                            rollout_log_prob=rollout_log_prob,
-                            response_mask=response_mask,
-                        )
-                        batch_metrics.update(rollout_corr_metrics)
+                        if response_mask.any():
+                            rollout_corr_metrics = compute_rollout_corr_metrics_from_logprobs(
+                                log_prob=log_probs,
+                                rollout_log_prob=rollout_log_prob,
+                                response_mask=response_mask,
+                            )
+                            batch_metrics.update(rollout_corr_metrics)
+                        else:
+                            print("Warning: response_mask has no valid tokens for rollout correction metrics computation.")
                     
                     if self.config.use_kl_loss and "ref_log_probs" in model_inputs:
                         ref_log_probs = model_inputs["ref_log_probs"]

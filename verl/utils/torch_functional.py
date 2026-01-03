@@ -70,6 +70,34 @@ def log_probs_from_logits(logits: torch.Tensor, labels: torch.Tensor) -> torch.T
     return output.view(*batch_dim)
 
 
+def masked_sum(values, mask, dim=None):
+    """Compute mean of tensor with a masked values."""
+    # If NaNs exist out of mask, replace NaNs in values with a value that
+    # won't affect the sum (e.g., 0 for masked regions)
+    valid_values = torch.where(mask.bool(), values, 0.0)
+    return (valid_values * mask).sum(dim=dim)
+
+def distributed_masked_mean(local_tensor, local_mask):
+    """Compute global mean of non-masked elements across distributed processes.
+
+    Args:
+        local_tensor (torch.Tensor): Input tensor with local values
+        local_mask (torch.Tensor): Binary mask (1=valid, 0=ignore) matching local_tensor shape
+
+    Returns:
+        torch.Tensor: Global mean of all valid elements across processes
+    """
+    local_tensor = local_tensor * local_mask
+
+    local_sum = torch.sum(local_tensor)
+    local_num = torch.sum(local_mask)
+
+    torch.distributed.all_reduce(local_sum, op=torch.distributed.ReduceOp.SUM)
+    torch.distributed.all_reduce(local_num, op=torch.distributed.ReduceOp.SUM)
+
+    global_mean = local_sum / local_num
+    return global_mean
+
 def masked_mean(values: torch.Tensor, mask: torch.Tensor, dim: int = None, eps: float = 1e-8) -> torch.Tensor:
     """Compute mean of tensor with a masked values."""
     return (values * mask).sum(dim=dim) / (mask.sum(dim=dim) + eps)

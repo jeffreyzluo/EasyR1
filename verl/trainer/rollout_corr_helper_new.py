@@ -71,7 +71,7 @@ import torch
 
 import verl.utils.torch_functional as verl_F
 from verl.protocol import DataProto
-from verl.trainer.config import RolloutCorrectionConfig
+from verl.trainer.config.algorithm import RolloutCorrectionConfig
 
 # Safety bound to prevent numerical overflow/underflow when exponentiating
 # exp(20) ≈ 485 million (upper limit for stable weights), exp(-20) ≈ 2e-9 (lower limit)
@@ -138,7 +138,7 @@ def compute_rollout_rejection_mask(
 
     elif rollout_rs == "sequence":
         # Sequence-level IS weight: product of token ratios (exp(sum(log ratios)))
-        log_ratio_sum: torch.Tensor = verl_F.masked_sum(log_ratio, response_mask, dim=-1).unsqueeze(
+        log_ratio_sum: torch.Tensor = verl_F.masked_sum(log_ratio, response_mask, axis=-1).unsqueeze(
             -1
         )  # Shape: (batch_size, 1)
         log_ratio_for_metrics = log_ratio_sum
@@ -148,7 +148,7 @@ def compute_rollout_rejection_mask(
 
     elif rollout_rs == "geometric":
         # Sequence-level geometric mean: exp(mean(log ratios))
-        log_ratio_mean: torch.Tensor = verl_F.masked_mean(log_ratio, response_mask, dim=-1).unsqueeze(
+        log_ratio_mean: torch.Tensor = verl_F.masked_mean(log_ratio, response_mask, axis=-1).unsqueeze(
             -1
         )  # Shape: (batch_size, 1)
         log_ratio_for_metrics = log_ratio_mean
@@ -180,7 +180,7 @@ def compute_rollout_rejection_mask(
     # rollout_rs_seq_masked_fraction: fraction of sequences rejected (mode-dependent)
     if rollout_rs == "token":
         # Token-level aggregation: sequence is rejected if any token is rejected
-        seq_has_masked: torch.Tensor = verl_F.masked_sum(1 - mask, response_mask, dim=-1) > 0
+        seq_has_masked: torch.Tensor = verl_F.masked_sum(1 - mask, response_mask, axis=-1) > 0
         metrics["rollout_rs_seq_masked_fraction"] = seq_has_masked.float().mean().item()
     else:
         # Sequence-level aggregation: check first token's mask (all tokens in sequence have same mask)
@@ -188,7 +188,7 @@ def compute_rollout_rejection_mask(
 
     # Apply rejection mask to original response mask
     modified_response_mask: torch.Tensor = response_mask * mask
-
+    print(metrics)
     return modified_response_mask, metrics
 
 
@@ -296,7 +296,7 @@ def compute_rs_metrics(
     # Add sequence-level metrics if weights have batch dimension
     if rollout_is_weights.dim() > 1:
         # Mean weight per sequence (masked to valid tokens)
-        seq_mean_weights: torch.Tensor = verl_F.masked_mean(rollout_is_weights, response_mask, dim=-1)
+        seq_mean_weights: torch.Tensor = verl_F.masked_mean(rollout_is_weights, response_mask, axis=-1)
 
         metrics["rollout_rs_seq_mean"] = seq_mean_weights.mean().item()
         metrics["rollout_rs_seq_std"] = seq_mean_weights.std().item() if seq_mean_weights.numel() > 1 else 0.0
@@ -373,7 +373,7 @@ def compute_rollout_correction_weights(
 
     elif rollout_is == "sequence":
         # Sequence-level IS weight: product of token ratios (exp(sum(log ratios)))
-        log_ratio_sum: torch.Tensor = verl_F.masked_sum(log_ratio, response_mask, dim=-1).unsqueeze(
+        log_ratio_sum: torch.Tensor = verl_F.masked_sum(log_ratio, response_mask, axis=-1).unsqueeze(
             -1
         )  # Shape: (batch_size, 1)
         log_ratio_for_metrics = log_ratio_sum
@@ -388,7 +388,7 @@ def compute_rollout_correction_weights(
     # This transforms the weight space into a "Trust Region" for the Cold-Start phase.
     if rollout_is_alpha != 1.0:
         rollout_is_weights = torch.pow(rollout_is_weights, rollout_is_alpha)
-    
+
     # Zero out weights for padding tokens using response mask
     rollout_is_weights = rollout_is_weights * response_mask
 
@@ -422,7 +422,7 @@ def compute_rollout_correction_weights(
             # Sequence-level: normalize over sequence weights (one weight per sequence)
             # For each sequence, compute mean over valid tokens (they all have the same weight)
             # then average across sequences
-            seq_weights = verl_F.masked_mean(rollout_is_weights, response_mask, dim=-1)  # (batch_size,)
+            seq_weights = verl_F.masked_mean(rollout_is_weights, response_mask, axis=-1)  # (batch_size,)
             seq_mask = (response_mask.sum(dim=-1) > 0).to(dtype=rollout_is_weights.dtype)
             if torch.distributed.is_available() and torch.distributed.is_initialized():
                 weights_mean = verl_F.distributed_masked_mean(seq_weights, seq_mask)
@@ -538,7 +538,7 @@ def compute_is_metrics(
 
     # Add sequence-level metrics if weights have batch dimension
     if rollout_is_weights.dim() > 1:
-        seq_mean_weights: torch.Tensor = verl_F.masked_mean(rollout_is_weights, response_mask, dim=-1)
+        seq_mean_weights: torch.Tensor = verl_F.masked_mean(rollout_is_weights, response_mask, axis=-1)
 
         metrics["rollout_is_seq_mean"] = seq_mean_weights.mean().item()
         metrics["rollout_is_seq_std"] = seq_mean_weights.std().item() if seq_mean_weights.numel() > 1 else 0.0
@@ -681,7 +681,7 @@ def compute_rollout_correction_and_rejection_mask(
         metrics["rollout_is_catastrophic_token_fraction"] = verl_F.masked_mean(
             catastrophic_tokens.float(), response_mask
         ).item()
-
+        print(metrics)
         # Apply veto to response mask (overrides previous rejection)
         modified_response_mask = modified_response_mask * veto_mask
     else:
@@ -756,7 +756,7 @@ def compute_offpolicy_metrics(
     # 1. Training policy perplexity (always available)
     # Formula: exp(-1/|T| * Σ log π_training(y_t|y_<t))
     # where |T| is the number of tokens generated by the model
-    mean_log_prob_training = verl_F.masked_mean(old_log_prob, response_mask, dim=-1)  # (batch_size,)
+    mean_log_prob_training = verl_F.masked_mean(old_log_prob, response_mask, axis=-1)  # (batch_size,)
     training_ppl = torch.exp(-mean_log_prob_training).mean()  # Batch mean of per-sequence PPL
     metrics["training_ppl"] = training_ppl.detach().item()
 
@@ -778,7 +778,7 @@ def compute_offpolicy_metrics(
         metrics["k3_kl"] = verl_F.masked_mean(k3_kl_matrix, response_mask).detach().item()
 
         # 2c. Rollout policy perplexity
-        mean_log_prob_rollout = verl_F.masked_mean(rollout_log_prob, response_mask, dim=-1)  # (batch_size,)
+        mean_log_prob_rollout = verl_F.masked_mean(rollout_log_prob, response_mask, axis=-1)  # (batch_size,)
         rollout_ppl = torch.exp(-mean_log_prob_rollout).mean()  # Batch mean of per-sequence PPL
         metrics["rollout_ppl"] = rollout_ppl.detach().item()
         metrics["rollout_log_ppl"] = (-mean_log_prob_rollout).mean().detach().item()
@@ -813,7 +813,7 @@ def compute_offpolicy_metrics(
         metrics["chi2_token"] = chi2_token.detach().item()
 
         # Sequence-level: E_seq[(Π ρ_t)²] - 1 = E_seq[exp(2 * Σ log ρ_t)] - 1
-        log_ratio_sum = verl_F.masked_sum(log_ratio, response_mask, dim=-1)  # Σ log ρ_t per sequence
+        log_ratio_sum = verl_F.masked_sum(log_ratio, response_mask, axis=-1)  # Σ log ρ_t per sequence
         log_ratio_sum_safe = torch.clamp(log_ratio_sum, min=-SAFETY_BOUND, max=SAFETY_BOUND)
         rho_squared_seq = torch.exp(2.0 * log_ratio_sum_safe)  # (Π ρ_t)²
         chi2_seq = rho_squared_seq.mean() - 1.0
@@ -851,14 +851,14 @@ def compute_rollout_correction_and_add_to_batch(
         The implementation is copied from szrlee <szrlee@gmail.com>.
     """
     # Get new API parameters directly from config
-    rollout_is = getattr(rollout_corr_config, "rollout_is", None)
-    rollout_is_threshold = getattr(rollout_corr_config, "rollout_is_threshold", 2.0)
-    rollout_rs = getattr(rollout_corr_config, "rollout_rs", None)
-    rollout_rs_threshold = getattr(rollout_corr_config, "rollout_rs_threshold", None)
-    rollout_rs_threshold_lower = getattr(rollout_corr_config, "rollout_rs_threshold_lower", None)
-    rollout_token_veto_threshold = getattr(rollout_corr_config, "rollout_token_veto_threshold", None)
-    rollout_is_batch_normalize = getattr(rollout_corr_config, "rollout_is_batch_normalize", False)
-    rollout_is_alpha = getattr(rollout_corr_config, "rollout_is_alpha", 1.0) # Extract is_alpha from config
+    rollout_is = rollout_corr_config.get("rollout_is", None)
+    rollout_is_threshold = rollout_corr_config.get("rollout_is_threshold", 2.0)
+    rollout_rs = rollout_corr_config.get("rollout_rs", None)
+    rollout_rs_threshold = rollout_corr_config.get("rollout_rs_threshold", None)
+    rollout_rs_threshold_lower = rollout_corr_config.get("rollout_rs_threshold_lower", None)
+    rollout_token_veto_threshold = rollout_corr_config.get("rollout_token_veto_threshold", None)
+    rollout_is_batch_normalize = rollout_corr_config.get("rollout_is_batch_normalize", False)
+    rollout_is_alpha = rollout_corr_config.get("rollout_is_alpha", 1.0) # Extract is_alpha from config
 
     # Compute IS weights and get modified response_mask
     rollout_is_weights, modified_response_mask, rollout_corr_metrics = compute_rollout_correction_and_rejection_mask(

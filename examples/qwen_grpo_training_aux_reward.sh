@@ -12,6 +12,7 @@ python3 -m verl.trainer.main \
     data.test_files=JeffreyZLuo/MathVista-formatted@testmini \
     worker.actor.model.model_path=${MODEL_PATH} \
     worker.actor.model.freeze_vision_tower=True \
-    trainer.experiment_name=qwen2.5_grpo_30_hard_baseline \
+    trainer.experiment_name=qwen2.5_grpo_30_hard_aux_reward \
+    worker.reward.reward_function=./examples/reward_function/math_aux.py:compute_score \
     trainer.n_gpus_per_node=8 \
     trainer.total_epochs=30

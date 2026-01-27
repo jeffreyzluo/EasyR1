@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Configuration
-MODEL="openvlthinker"
-DATASETS="mathverse,mathvision,hallusionbench,emma-math,emma-code,emma-chem,emma-physics,mmmu-pro-4,mmmu-pro-10,mmmu-pro-vision" # Comma separated list
+MODEL="qwen"
+# DATASETS="mathvista,mathverse,mathvision,hallusionbench,emma-math,emma-chem,emma-code,emma-physics,mmmu-pro-vision,mmmu-pro-4,mmmu-pro-10"
+DATASETS="mathvista"
 NUM_GPUS=8
 
 echo "=== Starting Evaluation on $NUM_GPUS GPUs ==="
@@ -24,4 +25,4 @@ echo "=== Evaluation Completed ==="
 
 # Merge results
 echo "=== Merging Shards ==="
-python merge_shards.py --dir ./evaluation/outputs
+python merge_shards.py --dir ./evaluation/outputs2.0

@@ -403,5 +403,3547 @@
       },
       "total_outputs": 2560
     }
+  },
+  "rollout_outputs/qwen2.5_7B_medium_ctrlg_hard_V8": {
+    "1.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.387109375,
+        "Induction": 0.09375,
+        "VisualReinspection": 0.9640625,
+        "GeometricGrounding": 0.548828125,
+        "SymbolVerification": 0.589453125,
+        "General": 0.25703125
+      },
+      "total_constraints": {
+        "Reflection": 991,
+        "Induction": 240,
+        "VisualReinspection": 2468,
+        "GeometricGrounding": 1405,
+        "SymbolVerification": 1509,
+        "General": 658
+      },
+      "total_outputs": 2560
+    },
+    "2.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.383984375,
+        "Induction": 0.103125,
+        "VisualReinspection": 1.019140625,
+        "GeometricGrounding": 0.56484375,
+        "SymbolVerification": 0.52734375,
+        "General": 0.258984375
+      },
+      "total_constraints": {
+        "Reflection": 983,
+        "Induction": 264,
+        "VisualReinspection": 2609,
+        "GeometricGrounding": 1446,
+        "SymbolVerification": 1350,
+        "General": 663
+      },
+      "total_outputs": 2560
+    },
+    "3.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.36953125,
+        "Induction": 0.111328125,
+        "VisualReinspection": 0.987890625,
+        "GeometricGrounding": 0.5421875,
+        "SymbolVerification": 0.63984375,
+        "General": 0.25078125
+      },
+      "total_constraints": {
+        "Reflection": 946,
+        "Induction": 285,
+        "VisualReinspection": 2529,
+        "GeometricGrounding": 1388,
+        "SymbolVerification": 1638,
+        "General": 642
+      },
+      "total_outputs": 2560
+    },
+    "4.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.35,
+        "Induction": 0.113671875,
+        "VisualReinspection": 0.989453125,
+        "GeometricGrounding": 0.621875,
+        "SymbolVerification": 0.622265625,
+        "General": 0.2390625
+      },
+      "total_constraints": {
+        "Reflection": 896,
+        "Induction": 291,
+        "VisualReinspection": 2533,
+        "GeometricGrounding": 1592,
+        "SymbolVerification": 1593,
+        "General": 612
+      },
+      "total_outputs": 2560
+    },
+    "5.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.3609375,
+        "Induction": 0.09765625,
+        "VisualReinspection": 0.971484375,
+        "GeometricGrounding": 0.465234375,
+        "SymbolVerification": 0.602734375,
+        "General": 0.259375
+      },
+      "total_constraints": {
+        "Reflection": 924,
+        "Induction": 250,
+        "VisualReinspection": 2487,
+        "GeometricGrounding": 1191,
+        "SymbolVerification": 1543,
+        "General": 664
+      },
+      "total_outputs": 2560
+    },
+    "6.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.358203125,
+        "Induction": 0.092578125,
+        "VisualReinspection": 1.006640625,
+        "GeometricGrounding": 0.4859375,
+        "SymbolVerification": 0.583203125,
+        "General": 0.266015625
+      },
+      "total_constraints": {
+        "Reflection": 917,
+        "Induction": 237,
+        "VisualReinspection": 2577,
+        "GeometricGrounding": 1244,
+        "SymbolVerification": 1493,
+        "General": 681
+      },
+      "total_outputs": 2560
+    },
+    "7.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.344921875,
+        "Induction": 0.09140625,
+        "VisualReinspection": 0.963671875,
+        "GeometricGrounding": 0.60703125,
+        "SymbolVerification": 0.55390625,
+        "General": 0.25390625
+      },
+      "total_constraints": {
+        "Reflection": 883,
+        "Induction": 234,
+        "VisualReinspection": 2467,
+        "GeometricGrounding": 1554,
+        "SymbolVerification": 1418,
+        "General": 650
+      },
+      "total_outputs": 2560
+    },
+    "8.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.3578125,
+        "Induction": 0.0890625,
+        "VisualReinspection": 0.94921875,
+        "GeometricGrounding": 0.495703125,
+        "SymbolVerification": 0.60859375,
+        "General": 0.26640625
+      },
+      "total_constraints": {
+        "Reflection": 916,
+        "Induction": 228,
+        "VisualReinspection": 2430,
+        "GeometricGrounding": 1269,
+        "SymbolVerification": 1558,
+        "General": 682
+      },
+      "total_outputs": 2560
+    },
+    "9.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.364453125,
+        "Induction": 0.10703125,
+        "VisualReinspection": 1.037109375,
+        "GeometricGrounding": 0.49140625,
+        "SymbolVerification": 0.55625,
+        "General": 0.23515625
+      },
+      "total_constraints": {
+        "Reflection": 933,
+        "Induction": 274,
+        "VisualReinspection": 2655,
+        "GeometricGrounding": 1258,
+        "SymbolVerification": 1424,
+        "General": 602
+      },
+      "total_outputs": 2560
+    },
+    "10.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.3703125,
+        "Induction": 0.116015625,
+        "VisualReinspection": 1.00625,
+        "GeometricGrounding": 0.585546875,
+        "SymbolVerification": 0.6203125,
+        "General": 0.260546875
+      },
+      "total_constraints": {
+        "Reflection": 948,
+        "Induction": 297,
+        "VisualReinspection": 2576,
+        "GeometricGrounding": 1499,
+        "SymbolVerification": 1588,
+        "General": 667
+      },
+      "total_outputs": 2560
+    }
+  },
+  "rollout_outputs/qwen2.5_grpo_30_hard_baseline": {
+    "1.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.021875,
+        "Induction": 0.001953125,
+        "VisualReinspection": 0.862890625,
+        "GeometricGrounding": 0.41640625,
+        "SymbolVerification": 0.52265625,
+        "General": 0.015625
+      },
+      "total_constraints": {
+        "Reflection": 56,
+        "Induction": 5,
+        "VisualReinspection": 2209,
+        "GeometricGrounding": 1066,
+        "SymbolVerification": 1338,
+        "General": 40
+      },
+      "total_outputs": 2560
+    },
+    "2.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.01640625,
+        "Induction": 0.0,
+        "VisualReinspection": 0.87734375,
+        "GeometricGrounding": 0.419921875,
+        "SymbolVerification": 0.441796875,
+        "General": 0.0078125
+      },
+      "total_constraints": {
+        "Reflection": 42,
+        "Induction": 0,
+        "VisualReinspection": 2246,
+        "GeometricGrounding": 1075,
+        "SymbolVerification": 1131,
+        "General": 20
+      },
+      "total_outputs": 2560
+    },
+    "3.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02109375,
+        "Induction": 0.015625,
+        "VisualReinspection": 0.826953125,
+        "GeometricGrounding": 0.403125,
+        "SymbolVerification": 0.562109375,
+        "General": 0.017578125
+      },
+      "total_constraints": {
+        "Reflection": 54,
+        "Induction": 40,
+        "VisualReinspection": 2117,
+        "GeometricGrounding": 1032,
+        "SymbolVerification": 1439,
+        "General": 45
+      },
+      "total_outputs": 2560
+    },
+    "4.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.026953125,
+        "Induction": 0.001953125,
+        "VisualReinspection": 0.82265625,
+        "GeometricGrounding": 0.41328125,
+        "SymbolVerification": 0.57734375,
+        "General": 0.009765625
+      },
+      "total_constraints": {
+        "Reflection": 69,
+        "Induction": 5,
+        "VisualReinspection": 2106,
+        "GeometricGrounding": 1058,
+        "SymbolVerification": 1478,
+        "General": 25
+      },
+      "total_outputs": 2560
+    },
+    "5.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.01796875,
+        "Induction": 0.0,
+        "VisualReinspection": 0.869140625,
+        "GeometricGrounding": 0.32578125,
+        "SymbolVerification": 0.567578125,
+        "General": 0.01171875
+      },
+      "total_constraints": {
+        "Reflection": 46,
+        "Induction": 0,
+        "VisualReinspection": 2225,
+        "GeometricGrounding": 834,
+        "SymbolVerification": 1453,
+        "General": 30
+      },
+      "total_outputs": 2560
+    },
+    "6.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.01328125,
+        "Induction": 0.0,
+        "VisualReinspection": 0.853515625,
+        "GeometricGrounding": 0.30390625,
+        "SymbolVerification": 0.50703125,
+        "General": 0.0078125
+      },
+      "total_constraints": {
+        "Reflection": 34,
+        "Induction": 0,
+        "VisualReinspection": 2185,
+        "GeometricGrounding": 778,
+        "SymbolVerification": 1298,
+        "General": 20
+      },
+      "total_outputs": 2560
+    },
+    "7.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.017578125,
+        "Induction": 0.0,
+        "VisualReinspection": 0.809765625,
+        "GeometricGrounding": 0.40703125,
+        "SymbolVerification": 0.51953125,
+        "General": 0.013671875
+      },
+      "total_constraints": {
+        "Reflection": 45,
+        "Induction": 0,
+        "VisualReinspection": 2073,
+        "GeometricGrounding": 1042,
+        "SymbolVerification": 1330,
+        "General": 35
+      },
+      "total_outputs": 2560
+    },
+    "8.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.012890625,
+        "Induction": 0.0,
+        "VisualReinspection": 0.819140625,
+        "GeometricGrounding": 0.346875,
+        "SymbolVerification": 0.553125,
+        "General": 0.01171875
+      },
+      "total_constraints": {
+        "Reflection": 33,
+        "Induction": 0,
+        "VisualReinspection": 2097,
+        "GeometricGrounding": 888,
+        "SymbolVerification": 1416,
+        "General": 30
+      },
+      "total_outputs": 2560
+    },
+    "9.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.020703125,
+        "Induction": 0.0,
+        "VisualReinspection": 0.8734375,
+        "GeometricGrounding": 0.34765625,
+        "SymbolVerification": 0.490234375,
+        "General": 0.013671875
+      },
+      "total_constraints": {
+        "Reflection": 53,
+        "Induction": 0,
+        "VisualReinspection": 2236,
+        "GeometricGrounding": 890,
+        "SymbolVerification": 1255,
+        "General": 35
+      },
+      "total_outputs": 2560
+    },
+    "10.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02109375,
+        "Induction": 0.001953125,
+        "VisualReinspection": 0.882421875,
+        "GeometricGrounding": 0.380078125,
+        "SymbolVerification": 0.560546875,
+        "General": 0.009765625
+      },
+      "total_constraints": {
+        "Reflection": 54,
+        "Induction": 5,
+        "VisualReinspection": 2259,
+        "GeometricGrounding": 973,
+        "SymbolVerification": 1435,
+        "General": 25
+      },
+      "total_outputs": 2560
+    }
+  },
+  "validation_outputs/qwen2.5_7B_medium_ctrlg_hard_V8": {
+    "5.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4266666666666667,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.29,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 5,
+        "VisualReinspection": 428,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 87,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "10.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4933333333333334,
+        "GeometricGrounding": 0.23666666666666666,
+        "SymbolVerification": 0.28,
+        "General": 0.01
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 448,
+        "GeometricGrounding": 71,
+        "SymbolVerification": 84,
+        "General": 3
+      },
+      "total_outputs": 300
+    },
+    "15.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.5033333333333334,
+        "GeometricGrounding": 0.24333333333333335,
+        "SymbolVerification": 0.24333333333333335,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 4,
+        "VisualReinspection": 451,
+        "GeometricGrounding": 73,
+        "SymbolVerification": 73,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "20.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.4966666666666666,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.26,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 4,
+        "VisualReinspection": 449,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 78,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "25.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.52,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.26666666666666666,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 456,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 80,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "30.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.56,
+        "GeometricGrounding": 0.22666666666666666,
+        "SymbolVerification": 0.21666666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 4,
+        "VisualReinspection": 468,
+        "GeometricGrounding": 68,
+        "SymbolVerification": 65,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "35.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.5233333333333334,
+        "GeometricGrounding": 0.19666666666666666,
+        "SymbolVerification": 0.21666666666666667,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 4,
+        "VisualReinspection": 457,
+        "GeometricGrounding": 59,
+        "SymbolVerification": 65,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "40.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.5366666666666666,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.24666666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 461,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 74,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "45.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.01,
+        "VisualReinspection": 1.59,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.22666666666666666,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 3,
+        "VisualReinspection": 477,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 68,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "50.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.5866666666666667,
+        "GeometricGrounding": 0.20333333333333334,
+        "SymbolVerification": 0.23333333333333334,
+        "General": 0.013333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 4,
+        "VisualReinspection": 476,
+        "GeometricGrounding": 61,
+        "SymbolVerification": 70,
+        "General": 4
+      },
+      "total_outputs": 300
+    },
+    "55.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.016666666666666666,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.75,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.18666666666666668,
+        "General": 0.01
+      },
+      "total_constraints": {
+        "Reflection": 5,
+        "Induction": 4,
+        "VisualReinspection": 525,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 56,
+        "General": 3
+      },
+      "total_outputs": 300
+    },
+    "60.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.006666666666666667,
+        "VisualReinspection": 1.6466666666666667,
+        "GeometricGrounding": 0.19333333333333333,
+        "SymbolVerification": 0.19666666666666666,
+        "General": 0.013333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 2,
+        "VisualReinspection": 494,
+        "GeometricGrounding": 58,
+        "SymbolVerification": 59,
+        "General": 4
+      },
+      "total_outputs": 300
+    },
+    "65.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.5666666666666667,
+        "GeometricGrounding": 0.23666666666666666,
+        "SymbolVerification": 0.23666666666666666,
+        "General": 0.013333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 4,
+        "VisualReinspection": 470,
+        "GeometricGrounding": 71,
+        "SymbolVerification": 71,
+        "General": 4
+      },
+      "total_outputs": 300
+    },
+    "70.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.01,
+        "VisualReinspection": 1.5266666666666666,
+        "GeometricGrounding": 0.19,
+        "SymbolVerification": 0.25333333333333335,
+        "General": 0.013333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 3,
+        "VisualReinspection": 458,
+        "GeometricGrounding": 57,
+        "SymbolVerification": 76,
+        "General": 4
+      },
+      "total_outputs": 300
+    },
+    "75.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.01,
+        "VisualReinspection": 1.5533333333333332,
+        "GeometricGrounding": 0.21333333333333335,
+        "SymbolVerification": 0.27666666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 3,
+        "VisualReinspection": 466,
+        "GeometricGrounding": 64,
+        "SymbolVerification": 83,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "80.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.043333333333333335,
+        "Induction": 0.01,
+        "VisualReinspection": 1.5533333333333332,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.27666666666666667,
+        "General": 0.013333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 13,
+        "Induction": 3,
+        "VisualReinspection": 466,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 83,
+        "General": 4
+      },
+      "total_outputs": 300
+    },
+    "85.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.02666666666666667,
+        "VisualReinspection": 1.54,
+        "GeometricGrounding": 0.23666666666666666,
+        "SymbolVerification": 0.26666666666666666,
+        "General": 0.01
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 8,
+        "VisualReinspection": 462,
+        "GeometricGrounding": 71,
+        "SymbolVerification": 80,
+        "General": 3
+      },
+      "total_outputs": 300
+    },
+    "90.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.5933333333333333,
+        "GeometricGrounding": 0.29,
+        "SymbolVerification": 0.22333333333333333,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 7,
+        "VisualReinspection": 478,
+        "GeometricGrounding": 87,
+        "SymbolVerification": 67,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "95.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.01,
+        "VisualReinspection": 1.5166666666666666,
+        "GeometricGrounding": 0.24,
+        "SymbolVerification": 0.28,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 3,
+        "VisualReinspection": 455,
+        "GeometricGrounding": 72,
+        "SymbolVerification": 84,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "100.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.03,
+        "VisualReinspection": 1.4766666666666666,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.23666666666666666,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 9,
+        "VisualReinspection": 443,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 71,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "105.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.53,
+        "GeometricGrounding": 0.21,
+        "SymbolVerification": 0.31666666666666665,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 7,
+        "VisualReinspection": 459,
+        "GeometricGrounding": 63,
+        "SymbolVerification": 95,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "110.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.4866666666666666,
+        "GeometricGrounding": 0.2733333333333333,
+        "SymbolVerification": 0.28,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 4,
+        "VisualReinspection": 446,
+        "GeometricGrounding": 82,
+        "SymbolVerification": 84,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "115.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.006666666666666667,
+        "VisualReinspection": 1.5466666666666666,
+        "GeometricGrounding": 0.20666666666666667,
+        "SymbolVerification": 0.3,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 2,
+        "VisualReinspection": 464,
+        "GeometricGrounding": 62,
+        "SymbolVerification": 90,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "120.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.58,
+        "GeometricGrounding": 0.18333333333333332,
+        "SymbolVerification": 0.2633333333333333,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 7,
+        "VisualReinspection": 474,
+        "GeometricGrounding": 55,
+        "SymbolVerification": 79,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "125.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.55,
+        "GeometricGrounding": 0.23666666666666666,
+        "SymbolVerification": 0.21,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 5,
+        "VisualReinspection": 465,
+        "GeometricGrounding": 71,
+        "SymbolVerification": 63,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "130.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.02666666666666667,
+        "VisualReinspection": 1.5,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.21666666666666667,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 8,
+        "VisualReinspection": 450,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 65,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "135.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4966666666666666,
+        "GeometricGrounding": 0.21333333333333335,
+        "SymbolVerification": 0.21666666666666667,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 14,
+        "Induction": 5,
+        "VisualReinspection": 449,
+        "GeometricGrounding": 64,
+        "SymbolVerification": 65,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "140.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.05,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.46,
+        "GeometricGrounding": 0.25333333333333335,
+        "SymbolVerification": 0.24666666666666667,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 15,
+        "Induction": 4,
+        "VisualReinspection": 438,
+        "GeometricGrounding": 76,
+        "SymbolVerification": 74,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "145.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.043333333333333335,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.4733333333333334,
+        "GeometricGrounding": 0.26666666666666666,
+        "SymbolVerification": 0.22666666666666666,
+        "General": 0.013333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 13,
+        "Induction": 4,
+        "VisualReinspection": 442,
+        "GeometricGrounding": 80,
+        "SymbolVerification": 68,
+        "General": 4
+      },
+      "total_outputs": 300
+    },
+    "150.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.05,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.52,
+        "GeometricGrounding": 0.24,
+        "SymbolVerification": 0.28,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 15,
+        "Induction": 4,
+        "VisualReinspection": 456,
+        "GeometricGrounding": 72,
+        "SymbolVerification": 84,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "155.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.02,
+        "VisualReinspection": 1.57,
+        "GeometricGrounding": 0.24333333333333335,
+        "SymbolVerification": 0.26,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 6,
+        "VisualReinspection": 471,
+        "GeometricGrounding": 73,
+        "SymbolVerification": 78,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "160.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.043333333333333335,
+        "Induction": 0.02,
+        "VisualReinspection": 1.6,
+        "GeometricGrounding": 0.2833333333333333,
+        "SymbolVerification": 0.23333333333333334,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 13,
+        "Induction": 6,
+        "VisualReinspection": 480,
+        "GeometricGrounding": 85,
+        "SymbolVerification": 70,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "165.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.02,
+        "VisualReinspection": 1.62,
+        "GeometricGrounding": 0.27666666666666667,
+        "SymbolVerification": 0.22666666666666666,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 6,
+        "VisualReinspection": 486,
+        "GeometricGrounding": 83,
+        "SymbolVerification": 68,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "170.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.0033333333333333335,
+        "VisualReinspection": 1.7,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.22,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 1,
+        "VisualReinspection": 510,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 66,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "175.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.03333333333333333,
+        "VisualReinspection": 1.65,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.21333333333333335,
+        "General": 0.03
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 10,
+        "VisualReinspection": 495,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 64,
+        "General": 9
+      },
+      "total_outputs": 300
+    },
+    "180.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.02666666666666667,
+        "VisualReinspection": 1.71,
+        "GeometricGrounding": 0.21,
+        "SymbolVerification": 0.26666666666666666,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 8,
+        "VisualReinspection": 513,
+        "GeometricGrounding": 63,
+        "SymbolVerification": 80,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "185.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.03,
+        "VisualReinspection": 1.6633333333333333,
+        "GeometricGrounding": 0.24666666666666667,
+        "SymbolVerification": 0.2633333333333333,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 9,
+        "VisualReinspection": 499,
+        "GeometricGrounding": 74,
+        "SymbolVerification": 79,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "190.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.02,
+        "VisualReinspection": 1.7366666666666666,
+        "GeometricGrounding": 0.24666666666666667,
+        "SymbolVerification": 0.27,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 6,
+        "VisualReinspection": 521,
+        "GeometricGrounding": 74,
+        "SymbolVerification": 81,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "195.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.03,
+        "VisualReinspection": 1.7533333333333334,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.25666666666666665,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 9,
+        "VisualReinspection": 526,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 77,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "200.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.02666666666666667,
+        "VisualReinspection": 1.76,
+        "GeometricGrounding": 0.25333333333333335,
+        "SymbolVerification": 0.23333333333333334,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 8,
+        "VisualReinspection": 528,
+        "GeometricGrounding": 76,
+        "SymbolVerification": 70,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "205.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.006666666666666667,
+        "VisualReinspection": 1.7733333333333334,
+        "GeometricGrounding": 0.24666666666666667,
+        "SymbolVerification": 0.2733333333333333,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 2,
+        "VisualReinspection": 532,
+        "GeometricGrounding": 74,
+        "SymbolVerification": 82,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "210.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.01,
+        "VisualReinspection": 1.74,
+        "GeometricGrounding": 0.22666666666666666,
+        "SymbolVerification": 0.24666666666666667,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 3,
+        "VisualReinspection": 522,
+        "GeometricGrounding": 68,
+        "SymbolVerification": 74,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "215.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.01,
+        "VisualReinspection": 1.78,
+        "GeometricGrounding": 0.24666666666666667,
+        "SymbolVerification": 0.3,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 3,
+        "VisualReinspection": 534,
+        "GeometricGrounding": 74,
+        "SymbolVerification": 90,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "220.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.7733333333333334,
+        "GeometricGrounding": 0.25666666666666665,
+        "SymbolVerification": 0.24666666666666667,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 4,
+        "VisualReinspection": 532,
+        "GeometricGrounding": 77,
+        "SymbolVerification": 74,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "225.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.043333333333333335,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.6966666666666668,
+        "GeometricGrounding": 0.25333333333333335,
+        "SymbolVerification": 0.29,
+        "General": 0.03666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 13,
+        "Induction": 7,
+        "VisualReinspection": 509,
+        "GeometricGrounding": 76,
+        "SymbolVerification": 87,
+        "General": 11
+      },
+      "total_outputs": 300
+    },
+    "230.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.6466666666666667,
+        "GeometricGrounding": 0.24666666666666667,
+        "SymbolVerification": 0.2833333333333333,
+        "General": 0.043333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 4,
+        "VisualReinspection": 494,
+        "GeometricGrounding": 74,
+        "SymbolVerification": 85,
+        "General": 13
+      },
+      "total_outputs": 300
+    },
+    "235.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.056666666666666664,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.6733333333333333,
+        "GeometricGrounding": 0.23666666666666666,
+        "SymbolVerification": 0.26,
+        "General": 0.03
+      },
+      "total_constraints": {
+        "Reflection": 17,
+        "Induction": 5,
+        "VisualReinspection": 502,
+        "GeometricGrounding": 71,
+        "SymbolVerification": 78,
+        "General": 9
+      },
+      "total_outputs": 300
+    },
+    "240.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.55,
+        "GeometricGrounding": 0.2833333333333333,
+        "SymbolVerification": 0.26666666666666666,
+        "General": 0.03
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 465,
+        "GeometricGrounding": 85,
+        "SymbolVerification": 80,
+        "General": 9
+      },
+      "total_outputs": 300
+    },
+    "245.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.52,
+        "GeometricGrounding": 0.25333333333333335,
+        "SymbolVerification": 0.24,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 5,
+        "VisualReinspection": 456,
+        "GeometricGrounding": 76,
+        "SymbolVerification": 72,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "250.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.5666666666666667,
+        "GeometricGrounding": 0.23,
+        "SymbolVerification": 0.25666666666666665,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 4,
+        "VisualReinspection": 470,
+        "GeometricGrounding": 69,
+        "SymbolVerification": 77,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "255.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.01,
+        "VisualReinspection": 1.64,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.25,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 3,
+        "VisualReinspection": 492,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 75,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "260.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.02666666666666667,
+        "VisualReinspection": 1.6066666666666667,
+        "GeometricGrounding": 0.2733333333333333,
+        "SymbolVerification": 0.20333333333333334,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 8,
+        "VisualReinspection": 482,
+        "GeometricGrounding": 82,
+        "SymbolVerification": 61,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "265.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.043333333333333335,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.58,
+        "GeometricGrounding": 0.20666666666666667,
+        "SymbolVerification": 0.2633333333333333,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 13,
+        "Induction": 4,
+        "VisualReinspection": 474,
+        "GeometricGrounding": 62,
+        "SymbolVerification": 79,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "270.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.65,
+        "GeometricGrounding": 0.23,
+        "SymbolVerification": 0.26,
+        "General": 0.03333333333333333
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 4,
+        "VisualReinspection": 495,
+        "GeometricGrounding": 69,
+        "SymbolVerification": 78,
+        "General": 10
+      },
+      "total_outputs": 300
+    },
+    "275.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.6066666666666667,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.22666666666666666,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 7,
+        "VisualReinspection": 482,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 68,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "280.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.03,
+        "VisualReinspection": 1.5066666666666666,
+        "GeometricGrounding": 0.27,
+        "SymbolVerification": 0.21,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 9,
+        "VisualReinspection": 452,
+        "GeometricGrounding": 81,
+        "SymbolVerification": 63,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "285.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.5833333333333333,
+        "GeometricGrounding": 0.27,
+        "SymbolVerification": 0.22666666666666666,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 7,
+        "VisualReinspection": 475,
+        "GeometricGrounding": 81,
+        "SymbolVerification": 68,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "290.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.0033333333333333335,
+        "VisualReinspection": 1.63,
+        "GeometricGrounding": 0.22666666666666666,
+        "SymbolVerification": 0.22333333333333333,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 1,
+        "VisualReinspection": 489,
+        "GeometricGrounding": 68,
+        "SymbolVerification": 67,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "295.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.01,
+        "VisualReinspection": 1.6433333333333333,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.21,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 3,
+        "VisualReinspection": 493,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 63,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "300.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.02666666666666667,
+        "VisualReinspection": 1.61,
+        "GeometricGrounding": 0.23666666666666666,
+        "SymbolVerification": 0.18333333333333332,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 8,
+        "VisualReinspection": 483,
+        "GeometricGrounding": 71,
+        "SymbolVerification": 55,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "305.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.61,
+        "GeometricGrounding": 0.22333333333333333,
+        "SymbolVerification": 0.22333333333333333,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 7,
+        "VisualReinspection": 483,
+        "GeometricGrounding": 67,
+        "SymbolVerification": 67,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "310.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.02,
+        "VisualReinspection": 1.63,
+        "GeometricGrounding": 0.24333333333333335,
+        "SymbolVerification": 0.27,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 6,
+        "VisualReinspection": 489,
+        "GeometricGrounding": 73,
+        "SymbolVerification": 81,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "315.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.64,
+        "GeometricGrounding": 0.25666666666666665,
+        "SymbolVerification": 0.23666666666666666,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 4,
+        "VisualReinspection": 492,
+        "GeometricGrounding": 77,
+        "SymbolVerification": 71,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "320.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.5566666666666666,
+        "GeometricGrounding": 0.25333333333333335,
+        "SymbolVerification": 0.27,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 4,
+        "VisualReinspection": 467,
+        "GeometricGrounding": 76,
+        "SymbolVerification": 81,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "325.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5266666666666666,
+        "GeometricGrounding": 0.25,
+        "SymbolVerification": 0.25,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 6,
+        "VisualReinspection": 458,
+        "GeometricGrounding": 75,
+        "SymbolVerification": 75,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "330.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.58,
+        "GeometricGrounding": 0.25,
+        "SymbolVerification": 0.22,
+        "General": 0.03
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 4,
+        "VisualReinspection": 474,
+        "GeometricGrounding": 75,
+        "SymbolVerification": 66,
+        "General": 9
+      },
+      "total_outputs": 300
+    },
+    "335.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.01,
+        "VisualReinspection": 1.53,
+        "GeometricGrounding": 0.2733333333333333,
+        "SymbolVerification": 0.23666666666666666,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 3,
+        "VisualReinspection": 459,
+        "GeometricGrounding": 82,
+        "SymbolVerification": 71,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "340.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5566666666666666,
+        "GeometricGrounding": 0.27666666666666667,
+        "SymbolVerification": 0.23333333333333334,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 6,
+        "VisualReinspection": 467,
+        "GeometricGrounding": 83,
+        "SymbolVerification": 70,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "345.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5533333333333332,
+        "GeometricGrounding": 0.29,
+        "SymbolVerification": 0.25333333333333335,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 6,
+        "VisualReinspection": 466,
+        "GeometricGrounding": 87,
+        "SymbolVerification": 76,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "350.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5166666666666666,
+        "GeometricGrounding": 0.25333333333333335,
+        "SymbolVerification": 0.29,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 6,
+        "VisualReinspection": 455,
+        "GeometricGrounding": 76,
+        "SymbolVerification": 87,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "355.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5333333333333334,
+        "GeometricGrounding": 0.26,
+        "SymbolVerification": 0.28,
+        "General": 0.016666666666666666
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 6,
+        "VisualReinspection": 460,
+        "GeometricGrounding": 78,
+        "SymbolVerification": 84,
+        "General": 5
+      },
+      "total_outputs": 300
+    },
+    "360.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4966666666666666,
+        "GeometricGrounding": 0.26,
+        "SymbolVerification": 0.28,
+        "General": 0.03333333333333333
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 5,
+        "VisualReinspection": 449,
+        "GeometricGrounding": 78,
+        "SymbolVerification": 84,
+        "General": 10
+      },
+      "total_outputs": 300
+    },
+    "365.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4766666666666666,
+        "GeometricGrounding": 0.2633333333333333,
+        "SymbolVerification": 0.23666666666666666,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 6,
+        "VisualReinspection": 443,
+        "GeometricGrounding": 79,
+        "SymbolVerification": 71,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "370.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.02666666666666667,
+        "VisualReinspection": 1.5766666666666667,
+        "GeometricGrounding": 0.2833333333333333,
+        "SymbolVerification": 0.23666666666666666,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 8,
+        "VisualReinspection": 473,
+        "GeometricGrounding": 85,
+        "SymbolVerification": 71,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "375.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.5033333333333334,
+        "GeometricGrounding": 0.29,
+        "SymbolVerification": 0.30333333333333334,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 7,
+        "VisualReinspection": 451,
+        "GeometricGrounding": 87,
+        "SymbolVerification": 91,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "380.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.013333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.54,
+        "GeometricGrounding": 0.26666666666666666,
+        "SymbolVerification": 0.2733333333333333,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 4,
+        "Induction": 5,
+        "VisualReinspection": 462,
+        "GeometricGrounding": 80,
+        "SymbolVerification": 82,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "385.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4933333333333334,
+        "GeometricGrounding": 0.26666666666666666,
+        "SymbolVerification": 0.26666666666666666,
+        "General": 0.03333333333333333
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 6,
+        "VisualReinspection": 448,
+        "GeometricGrounding": 80,
+        "SymbolVerification": 80,
+        "General": 10
+      },
+      "total_outputs": 300
+    },
+    "390.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.5533333333333332,
+        "GeometricGrounding": 0.29,
+        "SymbolVerification": 0.29333333333333333,
+        "General": 0.03333333333333333
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 4,
+        "VisualReinspection": 466,
+        "GeometricGrounding": 87,
+        "SymbolVerification": 88,
+        "General": 10
+      },
+      "total_outputs": 300
+    },
+    "395.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.006666666666666667,
+        "VisualReinspection": 1.5533333333333332,
+        "GeometricGrounding": 0.2633333333333333,
+        "SymbolVerification": 0.2833333333333333,
+        "General": 0.03333333333333333
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 2,
+        "VisualReinspection": 466,
+        "GeometricGrounding": 79,
+        "SymbolVerification": 85,
+        "General": 10
+      },
+      "total_outputs": 300
+    },
+    "400.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5233333333333334,
+        "GeometricGrounding": 0.2966666666666667,
+        "SymbolVerification": 0.25333333333333335,
+        "General": 0.03666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 6,
+        "VisualReinspection": 457,
+        "GeometricGrounding": 89,
+        "SymbolVerification": 76,
+        "General": 11
+      },
+      "total_outputs": 300
+    },
+    "405.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.016666666666666666,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5033333333333334,
+        "GeometricGrounding": 0.29333333333333333,
+        "SymbolVerification": 0.24,
+        "General": 0.04
+      },
+      "total_constraints": {
+        "Reflection": 5,
+        "Induction": 6,
+        "VisualReinspection": 451,
+        "GeometricGrounding": 88,
+        "SymbolVerification": 72,
+        "General": 12
+      },
+      "total_outputs": 300
+    },
+    "410.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5766666666666667,
+        "GeometricGrounding": 0.30333333333333334,
+        "SymbolVerification": 0.27,
+        "General": 0.03333333333333333
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 6,
+        "VisualReinspection": 473,
+        "GeometricGrounding": 91,
+        "SymbolVerification": 81,
+        "General": 10
+      },
+      "total_outputs": 300
+    },
+    "415.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5133333333333334,
+        "GeometricGrounding": 0.29333333333333333,
+        "SymbolVerification": 0.24333333333333335,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 6,
+        "VisualReinspection": 454,
+        "GeometricGrounding": 88,
+        "SymbolVerification": 73,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "420.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.49,
+        "GeometricGrounding": 0.26,
+        "SymbolVerification": 0.20666666666666667,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 4,
+        "VisualReinspection": 447,
+        "GeometricGrounding": 78,
+        "SymbolVerification": 62,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "425.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.01,
+        "VisualReinspection": 1.56,
+        "GeometricGrounding": 0.2966666666666667,
+        "SymbolVerification": 0.25,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 3,
+        "VisualReinspection": 468,
+        "GeometricGrounding": 89,
+        "SymbolVerification": 75,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "430.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.5933333333333333,
+        "GeometricGrounding": 0.30333333333333334,
+        "SymbolVerification": 0.27666666666666667,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 7,
+        "VisualReinspection": 478,
+        "GeometricGrounding": 91,
+        "SymbolVerification": 83,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "435.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5633333333333332,
+        "GeometricGrounding": 0.33,
+        "SymbolVerification": 0.25,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 6,
+        "VisualReinspection": 469,
+        "GeometricGrounding": 99,
+        "SymbolVerification": 75,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "440.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.01,
+        "VisualReinspection": 1.57,
+        "GeometricGrounding": 0.2733333333333333,
+        "SymbolVerification": 0.21,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 3,
+        "VisualReinspection": 471,
+        "GeometricGrounding": 82,
+        "SymbolVerification": 63,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "445.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5433333333333332,
+        "GeometricGrounding": 0.3433333333333333,
+        "SymbolVerification": 0.24333333333333335,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 6,
+        "VisualReinspection": 463,
+        "GeometricGrounding": 103,
+        "SymbolVerification": 73,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "450.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.02,
+        "VisualReinspection": 1.6,
+        "GeometricGrounding": 0.3233333333333333,
+        "SymbolVerification": 0.23,
+        "General": 0.02
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 6,
+        "VisualReinspection": 480,
+        "GeometricGrounding": 97,
+        "SymbolVerification": 69,
+        "General": 6
+      },
+      "total_outputs": 300
+    },
+    "455.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.03,
+        "VisualReinspection": 1.69,
+        "GeometricGrounding": 0.3233333333333333,
+        "SymbolVerification": 0.24333333333333335,
+        "General": 0.023333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 9,
+        "VisualReinspection": 507,
+        "GeometricGrounding": 97,
+        "SymbolVerification": 73,
+        "General": 7
+      },
+      "total_outputs": 300
+    },
+    "460.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.02,
+        "VisualReinspection": 1.6233333333333333,
+        "GeometricGrounding": 0.30666666666666664,
+        "SymbolVerification": 0.24333333333333335,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 6,
+        "VisualReinspection": 487,
+        "GeometricGrounding": 92,
+        "SymbolVerification": 73,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "465.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.6033333333333333,
+        "GeometricGrounding": 0.3,
+        "SymbolVerification": 0.2833333333333333,
+        "General": 0.02666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 481,
+        "GeometricGrounding": 90,
+        "SymbolVerification": 85,
+        "General": 8
+      },
+      "total_outputs": 300
+    },
+    "470.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.6033333333333333,
+        "GeometricGrounding": 0.3,
+        "SymbolVerification": 0.27,
+        "General": 0.03
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 4,
+        "VisualReinspection": 481,
+        "GeometricGrounding": 90,
+        "SymbolVerification": 81,
+        "General": 9
+      },
+      "total_outputs": 300
+    },
+    "475.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.6633333333333333,
+        "GeometricGrounding": 0.29,
+        "SymbolVerification": 0.24,
+        "General": 0.03666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 7,
+        "VisualReinspection": 499,
+        "GeometricGrounding": 87,
+        "SymbolVerification": 72,
+        "General": 11
+      },
+      "total_outputs": 300
+    },
+    "480.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.02,
+        "VisualReinspection": 1.6633333333333333,
+        "GeometricGrounding": 0.29333333333333333,
+        "SymbolVerification": 0.22666666666666666,
+        "General": 0.03
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 6,
+        "VisualReinspection": 499,
+        "GeometricGrounding": 88,
+        "SymbolVerification": 68,
+        "General": 9
+      },
+      "total_outputs": 300
+    },
+    "485.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.02,
+        "VisualReinspection": 1.5966666666666667,
+        "GeometricGrounding": 0.25666666666666665,
+        "SymbolVerification": 0.22666666666666666,
+        "General": 0.03
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 6,
+        "VisualReinspection": 479,
+        "GeometricGrounding": 77,
+        "SymbolVerification": 68,
+        "General": 9
+      },
+      "total_outputs": 300
+    },
+    "490.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.57,
+        "GeometricGrounding": 0.32,
+        "SymbolVerification": 0.2,
+        "General": 0.03333333333333333
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 7,
+        "VisualReinspection": 471,
+        "GeometricGrounding": 96,
+        "SymbolVerification": 60,
+        "General": 10
+      },
+      "total_outputs": 300
+    },
+    "495.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.5933333333333333,
+        "GeometricGrounding": 0.25,
+        "SymbolVerification": 0.22666666666666666,
+        "General": 0.03333333333333333
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 7,
+        "VisualReinspection": 478,
+        "GeometricGrounding": 75,
+        "SymbolVerification": 68,
+        "General": 10
+      },
+      "total_outputs": 300
+    }
+  },
+  "validation_outputs/qwen2.5_grpo_30_hard_baseline": {
+    "5.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.4533333333333334,
+        "GeometricGrounding": 0.23,
+        "SymbolVerification": 0.26,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 4,
+        "VisualReinspection": 436,
+        "GeometricGrounding": 69,
+        "SymbolVerification": 78,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "10.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4366666666666668,
+        "GeometricGrounding": 0.22666666666666666,
+        "SymbolVerification": 0.2733333333333333,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 6,
+        "VisualReinspection": 431,
+        "GeometricGrounding": 68,
+        "SymbolVerification": 82,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "0.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.4566666666666668,
+        "GeometricGrounding": 0.24333333333333335,
+        "SymbolVerification": 0.29333333333333333,
+        "General": 0.01
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 4,
+        "VisualReinspection": 437,
+        "GeometricGrounding": 73,
+        "SymbolVerification": 88,
+        "General": 3
+      },
+      "total_outputs": 300
+    },
+    "15.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4366666666666668,
+        "GeometricGrounding": 0.22666666666666666,
+        "SymbolVerification": 0.28,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 5,
+        "VisualReinspection": 431,
+        "GeometricGrounding": 68,
+        "SymbolVerification": 84,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "20.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.4233333333333333,
+        "GeometricGrounding": 0.22333333333333333,
+        "SymbolVerification": 0.3,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 4,
+        "VisualReinspection": 427,
+        "GeometricGrounding": 67,
+        "SymbolVerification": 90,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "25.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.45,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.30333333333333334,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 7,
+        "VisualReinspection": 435,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 91,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "30.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.02,
+        "VisualReinspection": 1.42,
+        "GeometricGrounding": 0.21333333333333335,
+        "SymbolVerification": 0.26666666666666666,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 6,
+        "VisualReinspection": 426,
+        "GeometricGrounding": 64,
+        "SymbolVerification": 80,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "35.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4133333333333333,
+        "GeometricGrounding": 0.22666666666666666,
+        "SymbolVerification": 0.27666666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 5,
+        "VisualReinspection": 424,
+        "GeometricGrounding": 68,
+        "SymbolVerification": 83,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "40.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4166666666666667,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.29333333333333333,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 6,
+        "VisualReinspection": 425,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 88,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "45.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.02,
+        "VisualReinspection": 1.43,
+        "GeometricGrounding": 0.21,
+        "SymbolVerification": 0.24666666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 6,
+        "VisualReinspection": 429,
+        "GeometricGrounding": 63,
+        "SymbolVerification": 74,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "50.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.01,
+        "VisualReinspection": 1.3866666666666667,
+        "GeometricGrounding": 0.21333333333333335,
+        "SymbolVerification": 0.26666666666666666,
+        "General": 0.01
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 3,
+        "VisualReinspection": 416,
+        "GeometricGrounding": 64,
+        "SymbolVerification": 80,
+        "General": 3
+      },
+      "total_outputs": 300
+    },
+    "55.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4033333333333333,
+        "GeometricGrounding": 0.21333333333333335,
+        "SymbolVerification": 0.26666666666666666,
+        "General": 0.013333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 5,
+        "VisualReinspection": 421,
+        "GeometricGrounding": 64,
+        "SymbolVerification": 80,
+        "General": 4
+      },
+      "total_outputs": 300
+    },
+    "60.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.42,
+        "GeometricGrounding": 0.24,
+        "SymbolVerification": 0.25666666666666665,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 7,
+        "VisualReinspection": 426,
+        "GeometricGrounding": 72,
+        "SymbolVerification": 77,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "65.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.3833333333333333,
+        "GeometricGrounding": 0.22666666666666666,
+        "SymbolVerification": 0.25,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 4,
+        "VisualReinspection": 415,
+        "GeometricGrounding": 68,
+        "SymbolVerification": 75,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "70.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.42,
+        "GeometricGrounding": 0.20333333333333334,
+        "SymbolVerification": 0.24333333333333335,
+        "General": 0.01
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 7,
+        "VisualReinspection": 426,
+        "GeometricGrounding": 61,
+        "SymbolVerification": 73,
+        "General": 3
+      },
+      "total_outputs": 300
+    },
+    "75.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4166666666666667,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.25,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 6,
+        "VisualReinspection": 425,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 75,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "80.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4033333333333333,
+        "GeometricGrounding": 0.25,
+        "SymbolVerification": 0.29333333333333333,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 5,
+        "VisualReinspection": 421,
+        "GeometricGrounding": 75,
+        "SymbolVerification": 88,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "85.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.04,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4233333333333333,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.2966666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 12,
+        "Induction": 5,
+        "VisualReinspection": 427,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 89,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "90.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.39,
+        "GeometricGrounding": 0.24666666666666667,
+        "SymbolVerification": 0.25666666666666665,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 5,
+        "VisualReinspection": 417,
+        "GeometricGrounding": 74,
+        "SymbolVerification": 77,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "95.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4333333333333333,
+        "GeometricGrounding": 0.25333333333333335,
+        "SymbolVerification": 0.26,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 5,
+        "VisualReinspection": 430,
+        "GeometricGrounding": 76,
+        "SymbolVerification": 78,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "100.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4166666666666667,
+        "GeometricGrounding": 0.23666666666666666,
+        "SymbolVerification": 0.27,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 425,
+        "GeometricGrounding": 71,
+        "SymbolVerification": 81,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "105.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.02,
+        "VisualReinspection": 1.44,
+        "GeometricGrounding": 0.25,
+        "SymbolVerification": 0.2833333333333333,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 6,
+        "VisualReinspection": 432,
+        "GeometricGrounding": 75,
+        "SymbolVerification": 85,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "110.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.42,
+        "GeometricGrounding": 0.21666666666666667,
+        "SymbolVerification": 0.27666666666666667,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 5,
+        "VisualReinspection": 426,
+        "GeometricGrounding": 65,
+        "SymbolVerification": 83,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "115.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.45,
+        "GeometricGrounding": 0.21333333333333335,
+        "SymbolVerification": 0.24666666666666667,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 5,
+        "VisualReinspection": 435,
+        "GeometricGrounding": 64,
+        "SymbolVerification": 74,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "120.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.4633333333333334,
+        "GeometricGrounding": 0.23666666666666666,
+        "SymbolVerification": 0.25333333333333335,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 4,
+        "VisualReinspection": 439,
+        "GeometricGrounding": 71,
+        "SymbolVerification": 76,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "125.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4133333333333333,
+        "GeometricGrounding": 0.2,
+        "SymbolVerification": 0.25,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 5,
+        "VisualReinspection": 424,
+        "GeometricGrounding": 60,
+        "SymbolVerification": 75,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "130.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4133333333333333,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.24333333333333335,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 6,
+        "VisualReinspection": 424,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 73,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "135.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.41,
+        "GeometricGrounding": 0.23666666666666666,
+        "SymbolVerification": 0.23,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 423,
+        "GeometricGrounding": 71,
+        "SymbolVerification": 69,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "140.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4033333333333333,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.27666666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 5,
+        "VisualReinspection": 421,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 83,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "145.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.016666666666666666,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4033333333333333,
+        "GeometricGrounding": 0.20666666666666667,
+        "SymbolVerification": 0.24333333333333335,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 5,
+        "Induction": 6,
+        "VisualReinspection": 421,
+        "GeometricGrounding": 62,
+        "SymbolVerification": 73,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "150.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4,
+        "GeometricGrounding": 0.22666666666666666,
+        "SymbolVerification": 0.22333333333333333,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 5,
+        "VisualReinspection": 420,
+        "GeometricGrounding": 68,
+        "SymbolVerification": 67,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "155.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.016666666666666666,
+        "Induction": 0.02,
+        "VisualReinspection": 1.42,
+        "GeometricGrounding": 0.22666666666666666,
+        "SymbolVerification": 0.25666666666666665,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 5,
+        "Induction": 6,
+        "VisualReinspection": 426,
+        "GeometricGrounding": 68,
+        "SymbolVerification": 77,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "160.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.37,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.25333333333333335,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 411,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 76,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "165.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.023333333333333334,
+        "VisualReinspection": 1.4,
+        "GeometricGrounding": 0.24666666666666667,
+        "SymbolVerification": 0.21,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 7,
+        "VisualReinspection": 420,
+        "GeometricGrounding": 74,
+        "SymbolVerification": 63,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "170.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.01,
+        "VisualReinspection": 1.4366666666666668,
+        "GeometricGrounding": 0.21666666666666667,
+        "SymbolVerification": 0.23,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 3,
+        "VisualReinspection": 431,
+        "GeometricGrounding": 65,
+        "SymbolVerification": 69,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "175.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.01,
+        "VisualReinspection": 1.3966666666666667,
+        "GeometricGrounding": 0.21,
+        "SymbolVerification": 0.24,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 3,
+        "VisualReinspection": 419,
+        "GeometricGrounding": 63,
+        "SymbolVerification": 72,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "180.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4133333333333333,
+        "GeometricGrounding": 0.21666666666666667,
+        "SymbolVerification": 0.21666666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 6,
+        "VisualReinspection": 424,
+        "GeometricGrounding": 65,
+        "SymbolVerification": 65,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "185.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4233333333333333,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.23,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 5,
+        "VisualReinspection": 427,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 69,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "190.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.016666666666666666,
+        "Induction": 0.01,
+        "VisualReinspection": 1.3833333333333333,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.25,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 5,
+        "Induction": 3,
+        "VisualReinspection": 415,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 75,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "195.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.02,
+        "VisualReinspection": 1.3866666666666667,
+        "GeometricGrounding": 0.23,
+        "SymbolVerification": 0.25333333333333335,
+        "General": 0.013333333333333334
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 6,
+        "VisualReinspection": 416,
+        "GeometricGrounding": 69,
+        "SymbolVerification": 76,
+        "General": 4
+      },
+      "total_outputs": 300
+    },
+    "200.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.38,
+        "GeometricGrounding": 0.26,
+        "SymbolVerification": 0.23333333333333334,
+        "General": 0.01
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 5,
+        "VisualReinspection": 414,
+        "GeometricGrounding": 78,
+        "SymbolVerification": 70,
+        "General": 3
+      },
+      "total_outputs": 300
+    },
+    "205.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4233333333333333,
+        "GeometricGrounding": 0.23,
+        "SymbolVerification": 0.22666666666666666,
+        "General": 0.01
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 5,
+        "VisualReinspection": 427,
+        "GeometricGrounding": 69,
+        "SymbolVerification": 68,
+        "General": 3
+      },
+      "total_outputs": 300
+    },
+    "210.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.43,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.22,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 5,
+        "VisualReinspection": 429,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 66,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "215.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.3933333333333333,
+        "GeometricGrounding": 0.25,
+        "SymbolVerification": 0.24666666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 5,
+        "VisualReinspection": 418,
+        "GeometricGrounding": 75,
+        "SymbolVerification": 74,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "220.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4166666666666667,
+        "GeometricGrounding": 0.23,
+        "SymbolVerification": 0.29,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 6,
+        "VisualReinspection": 425,
+        "GeometricGrounding": 69,
+        "SymbolVerification": 87,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "225.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4033333333333333,
+        "GeometricGrounding": 0.24,
+        "SymbolVerification": 0.22333333333333333,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 5,
+        "VisualReinspection": 421,
+        "GeometricGrounding": 72,
+        "SymbolVerification": 67,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "230.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03666666666666667,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.3966666666666667,
+        "GeometricGrounding": 0.20666666666666667,
+        "SymbolVerification": 0.23666666666666666,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 11,
+        "Induction": 4,
+        "VisualReinspection": 419,
+        "GeometricGrounding": 62,
+        "SymbolVerification": 71,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "235.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.01,
+        "VisualReinspection": 1.4133333333333333,
+        "GeometricGrounding": 0.26,
+        "SymbolVerification": 0.21,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 3,
+        "VisualReinspection": 424,
+        "GeometricGrounding": 78,
+        "SymbolVerification": 63,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "240.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.41,
+        "GeometricGrounding": 0.20333333333333334,
+        "SymbolVerification": 0.26666666666666666,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 5,
+        "VisualReinspection": 423,
+        "GeometricGrounding": 61,
+        "SymbolVerification": 80,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "245.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.43,
+        "GeometricGrounding": 0.23,
+        "SymbolVerification": 0.24,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 5,
+        "VisualReinspection": 429,
+        "GeometricGrounding": 69,
+        "SymbolVerification": 72,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "250.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.01,
+        "VisualReinspection": 1.37,
+        "GeometricGrounding": 0.20666666666666667,
+        "SymbolVerification": 0.2633333333333333,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 3,
+        "VisualReinspection": 411,
+        "GeometricGrounding": 62,
+        "SymbolVerification": 79,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "255.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.02,
+        "VisualReinspection": 1.4333333333333333,
+        "GeometricGrounding": 0.26,
+        "SymbolVerification": 0.25333333333333335,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 6,
+        "VisualReinspection": 430,
+        "GeometricGrounding": 78,
+        "SymbolVerification": 76,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "260.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02666666666666667,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.35,
+        "GeometricGrounding": 0.22333333333333333,
+        "SymbolVerification": 0.26,
+        "General": 0.01
+      },
+      "total_constraints": {
+        "Reflection": 8,
+        "Induction": 4,
+        "VisualReinspection": 405,
+        "GeometricGrounding": 67,
+        "SymbolVerification": 78,
+        "General": 3
+      },
+      "total_outputs": 300
+    },
+    "265.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.41,
+        "GeometricGrounding": 0.24,
+        "SymbolVerification": 0.2866666666666667,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 423,
+        "GeometricGrounding": 72,
+        "SymbolVerification": 86,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "270.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.01,
+        "VisualReinspection": 1.3966666666666667,
+        "GeometricGrounding": 0.22333333333333333,
+        "SymbolVerification": 0.24,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 3,
+        "VisualReinspection": 419,
+        "GeometricGrounding": 67,
+        "SymbolVerification": 72,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "275.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4033333333333333,
+        "GeometricGrounding": 0.2633333333333333,
+        "SymbolVerification": 0.24666666666666667,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 421,
+        "GeometricGrounding": 79,
+        "SymbolVerification": 74,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "280.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4066666666666667,
+        "GeometricGrounding": 0.24,
+        "SymbolVerification": 0.22333333333333333,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 5,
+        "VisualReinspection": 422,
+        "GeometricGrounding": 72,
+        "SymbolVerification": 67,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "285.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.043333333333333335,
+        "Induction": 0.02,
+        "VisualReinspection": 1.44,
+        "GeometricGrounding": 0.21333333333333335,
+        "SymbolVerification": 0.24666666666666667,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 13,
+        "Induction": 6,
+        "VisualReinspection": 432,
+        "GeometricGrounding": 64,
+        "SymbolVerification": 74,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "290.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.4366666666666668,
+        "GeometricGrounding": 0.19333333333333333,
+        "SymbolVerification": 0.22333333333333333,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 5,
+        "VisualReinspection": 431,
+        "GeometricGrounding": 58,
+        "SymbolVerification": 67,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "295.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.02,
+        "Induction": 0.01,
+        "VisualReinspection": 1.4466666666666668,
+        "GeometricGrounding": 0.23333333333333334,
+        "SymbolVerification": 0.23333333333333334,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 6,
+        "Induction": 3,
+        "VisualReinspection": 434,
+        "GeometricGrounding": 70,
+        "SymbolVerification": 70,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "300.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.01,
+        "VisualReinspection": 1.4566666666666668,
+        "GeometricGrounding": 0.21,
+        "SymbolVerification": 0.22333333333333333,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 3,
+        "VisualReinspection": 437,
+        "GeometricGrounding": 63,
+        "SymbolVerification": 67,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "305.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.01,
+        "VisualReinspection": 1.44,
+        "GeometricGrounding": 0.25,
+        "SymbolVerification": 0.24333333333333335,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 3,
+        "VisualReinspection": 432,
+        "GeometricGrounding": 75,
+        "SymbolVerification": 73,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "310.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.4,
+        "GeometricGrounding": 0.20666666666666667,
+        "SymbolVerification": 0.26,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 4,
+        "VisualReinspection": 420,
+        "GeometricGrounding": 62,
+        "SymbolVerification": 78,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "315.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03333333333333333,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.3833333333333333,
+        "GeometricGrounding": 0.21666666666666667,
+        "SymbolVerification": 0.24,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 10,
+        "Induction": 4,
+        "VisualReinspection": 415,
+        "GeometricGrounding": 65,
+        "SymbolVerification": 72,
+        "General": 1
+      },
+      "total_outputs": 300
+    },
+    "320.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.03,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.43,
+        "GeometricGrounding": 0.21333333333333335,
+        "SymbolVerification": 0.23,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 9,
+        "Induction": 4,
+        "VisualReinspection": 429,
+        "GeometricGrounding": 64,
+        "SymbolVerification": 69,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "325.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.016666666666666666,
+        "VisualReinspection": 1.44,
+        "GeometricGrounding": 0.20333333333333334,
+        "SymbolVerification": 0.25666666666666665,
+        "General": 0.006666666666666667
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 5,
+        "VisualReinspection": 432,
+        "GeometricGrounding": 61,
+        "SymbolVerification": 77,
+        "General": 2
+      },
+      "total_outputs": 300
+    },
+    "330.jsonl": {
+      "avg_constraints": {
+        "Reflection": 0.023333333333333334,
+        "Induction": 0.013333333333333334,
+        "VisualReinspection": 1.4266666666666667,
+        "GeometricGrounding": 0.22,
+        "SymbolVerification": 0.25666666666666665,
+        "General": 0.0033333333333333335
+      },
+      "total_constraints": {
+        "Reflection": 7,
+        "Induction": 4,
+        "VisualReinspection": 428,
+        "GeometricGrounding": 66,
+        "SymbolVerification": 77,
+        "General": 1
+      },
+      "total_outputs": 300
+    }
   }
 }

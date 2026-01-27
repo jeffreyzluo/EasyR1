@@ -67,9 +67,9 @@ def get_model_eval_config(model_type: ModelType) -> ModelEvaluationConfig:
             prompt_suffix=""
         ),
         ModelType.QWEN: ModelEvaluationConfig(
-            model_name="JeffreyZLuo/Qwen2.5-45-Hard-V8",
+            model_name="JeffreyZLuo/Qwen2.5-45-Hard-V9",
             processor_name="Qwen/Qwen2.5-VL-7B-Instruct",
-            prompt_suffix="\n\nYour final answer MUST BE put in \\boxed{}"
+            prompt_suffix="\n\nFIRST reason step by step and then provide the final answer. Your final answer MUST BE put in \\boxed{}"
         )
     }
     return configs[model_type]
@@ -159,7 +159,8 @@ def load_dataset_items(config: DatasetConfig) -> List[Dict[str, Any]]:
 
 def format_instruction(instruction: str, options: Optional[List[str]] = None, is_yes_no: bool = False, is_vision_only: bool = False) -> str:
     options = eval(options) if isinstance(options, str) else options
-    hint = "Hint: Please answer the question"
+    # hint = "Hint: Please answer the question"
+    hint = ""
     if is_vision_only:
         hint += " shown in the image."
         if options:
@@ -170,9 +171,10 @@ def format_instruction(instruction: str, options: Optional[List[str]] = None, is
     if is_yes_no:
         return f"{hint} requiring an answer of yes or no.\nQuestion: {instruction}"
     if options:
-        hint += " and provide the correct option letter, e.g., A, B, C, D, E, at the end."
-        choice_list = "\n".join(f"({chr(65+i)}) {opt}" for i, opt in enumerate(options))
-        return f"{hint}\nQuestion: {instruction}\nChoices:\n{choice_list}"
+        # hint += " and provide the correct option letter, e.g., A, B, C, D, E, at the end."
+        # choice_list = "\n".join(f"({chr(65+i)}) {opt}" for i, opt in enumerate(options))
+        # return f"{hint}\nQuestion: {instruction}\nChoices:\n{choice_list}"
+        return f"{instruction}"
     return f"{hint} requiring an answer.\nQuestion: {instruction}"
 
 def process_ground_truth(response: str, choices: Optional[List[str]], options: Optional[List[str]] = None) -> str:
@@ -240,7 +242,7 @@ def main():
         dataset_config = get_dataset_config(dataset_type)
         
         # Output filename includes shard info
-        output_file = f"./evaluation/outputs/{dataset_type.value}_{model_config.model_name.split('/')[-1]}_shard_{args.shard_id}_of_{args.num_shards}.json"
+        output_file = f"./evaluation/outputs2.0/{dataset_type.value}_{model_config.model_name.split('/')[-1]}_shard_{args.shard_id}_of_{args.num_shards}.json"
         
         logger.info(f"--- Starting {ds_name} (Shard {args.shard_id}/{args.num_shards}) ---")
         

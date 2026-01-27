@@ -174,6 +174,7 @@ cython_debug/
 *.pt
 
 # outputs
+compressed_folder.tar.gz
 outputs/
 checkpoints/
 wandb/

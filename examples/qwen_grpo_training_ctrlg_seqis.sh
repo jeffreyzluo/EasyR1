@@ -37,7 +37,7 @@ worker.rollout.engine_kwargs.vllm.logits_processors=[\"ctrlg_custom_vllm:${ctrlg
 "
 
 IS_ARG_STR="algorithm.rollout_correction.rollout_is=sequence \
-algorithm.rollout_correction.rollout_is_alpha=0 \
+algorithm.rollout_correction.rollout_is_alpha=0.4 \
 algorithm.rollout_correction.rollout_is_batch_normalize=True"
 
 python3 -m verl.trainer.main \

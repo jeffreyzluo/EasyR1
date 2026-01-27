@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import math
+import random
 import os
 from collections import defaultdict
 from io import BytesIO
@@ -107,6 +108,7 @@ class RLHFDataset(Dataset):
         max_pixels: Optional[int] = None,
         filter_overlong_prompts: bool = True,
         filter_overlong_prompts_workers: int = 16,
+        traj_hint: bool = False,
     ):
         self.tokenizer = tokenizer
         self.processor = processor
@@ -120,6 +122,7 @@ class RLHFDataset(Dataset):
         self.truncation = truncation
         self.min_pixels = min_pixels
         self.max_pixels = max_pixels
+        self.traj_hint = traj_hint
 
         if "@" in data_path:
             data_path, data_split = data_path.split("@")
@@ -153,7 +156,16 @@ class RLHFDataset(Dataset):
         prompt_str: str = example[self.prompt_key]
         if self.format_prompt:
             format_prompt = Template(self.format_prompt.strip())
-            prompt_str = format_prompt.render(content=prompt_str)
+            if self.traj_hint:
+                hint_list=[
+                    "Try to use the following keywords: [notation, symbols, title, alignment, coordinates, layout, scale, shape, image, describe, see, identify, observe, inspect].",
+                    "Try to use the following keywords: [backwards, reverse, recall, imagine, alternatively, maybe, small example, pattern].",
+                    "Try to use the following keywords: [Wait, double-check, doube check, verify, Re-examine, re-examine, missed]."
+                ]
+                hint_str = f"Please follow the provided hint to solve the question: {random.choice(hint_list)}"
+                prompt_str = format_prompt.render(content=prompt_str, hint=hint_str)
+            else:
+                prompt_str = format_prompt.render(content=prompt_str)
 
         if self.image_key in example:
             # https://huggingface.co/docs/transformers/en/tasks/image_text_to_text
